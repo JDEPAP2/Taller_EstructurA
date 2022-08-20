@@ -10,5 +10,10 @@ package modelo;
  * @author PC
  */
 public class Post {
+    String usuario, fecha, contenido, tiempoL;
+
+    public Post() {
+    }
+    
     
 }
