@@ -11,6 +11,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import modelo.Cola;
@@ -34,6 +35,9 @@ public class FXMLDocumentController implements Initializable {
         
     @FXML
     private WebView wbReporte;
+    
+    @FXML
+    private TextArea contador;
            
     WebEngine webEngine1;
     WebEngine webEngine2;
@@ -44,10 +48,10 @@ public class FXMLDocumentController implements Initializable {
     
         @FXML
     private void iniciarProceso(ActionEvent event) {
-        String html = objTools.convertirReporteAHtml();
+        String html = objTools.orquestadoresAHtml();
         webEngine1.loadContent(html);
         
-        String html2 = objTools.convertirReporteAHtml();
+        String html2 = objTools.colaAHtml();
         webEngine2.loadContent(html2);
     }
     
