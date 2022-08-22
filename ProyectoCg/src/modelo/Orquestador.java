@@ -18,11 +18,14 @@ public class Orquestador {
     
     public void procesarPost ( Post post ){
         setTiempopOrq(post.getTiempoP());
-        setState("Ocupado");
+        setState("Ocupado"); 
     }
     
     public void reporteOrq ( Post post ){
-        long tiempoProm = getPostsAtendidos() / getTiempoAtendido();
+        long tiempoProm = 0;
+        if (this.getTiempoAtendido() != 0){
+            tiempoProm = getPostsAtendidos() / getTiempoAtendido();
+        }                  
         long tiempoAt = tiempoAtendido + Long.parseLong(post.getTiempoP());
         
         if(Long.parseLong(post.getTiempoP()) > Long.parseLong(postMayor.getTiempoP())){
@@ -35,7 +38,8 @@ public class Orquestador {
         
         setTiempoAtendido(tiempoAt);
         setTiempoPromedio(tiempoProm);
-        setPostsAtendidos(postsAtendidos++);
+        setPostsAtendidos(this.getPostsAtendidos() + 1);
+        setState("Disponible");
     }   
 
     public String getState() {
@@ -103,5 +107,12 @@ public class Orquestador {
         this.postMayor = postMayor;
         this.postMenor = postMenor;
     }
+
+    @Override
+    public String toString() {
+        return "Orquestador{" + "state=" + state + ", tiempopOrq=" + tiempopOrq + ", postsAtendidos=" + postsAtendidos + ", tiempoAtendido=" + tiempoAtendido + ", tiempoPromedio=" + tiempoPromedio + ", postMayor=" + postMayor + ", postMenor=" + postMenor + '}';
+    }
+    
+    
 
 }

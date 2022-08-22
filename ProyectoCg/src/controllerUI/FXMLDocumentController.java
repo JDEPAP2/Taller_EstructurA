@@ -5,6 +5,7 @@
  */
 package controllerUI;
 
+import datos.Post;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -27,6 +28,8 @@ import procesos.Contador;
  * @author PC
  */
 public class FXMLDocumentController implements Initializable {
+    
+    Cola<Post> colaP;
     
     @FXML
     private Label label;
@@ -68,6 +71,7 @@ public class FXMLDocumentController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        colaP = new Cola<>();
         webEngine1 = wbOrquestadores.getEngine();
         webEngine2 = wbCola.getEngine();
         webEngine3 = wbReporte.getEngine();
@@ -77,11 +81,25 @@ public class FXMLDocumentController implements Initializable {
         webEngine3.load("");
         
         ActualizarCola hiloCola = new ActualizarCola();
-        ActualizarOrquestador hiloOrquestador = new  ActualizarOrquestador();
+        ActualizarOrquestador hiloOrquestador1 = new  ActualizarOrquestador("hiloOrquestador1");
+        ActualizarOrquestador hiloOrquestador2 = new  ActualizarOrquestador("hiloOrquestador2");
+        ActualizarOrquestador hiloOrquestador3 = new  ActualizarOrquestador("hiloOrquestador3");
         ActualizarReporte hiloReporte = new ActualizarReporte();
         Contador hiloContador = new Contador();
         
         hiloCola.start();
+        hiloCola.cola(colaP);
+        
+        hiloOrquestador1.cola(colaP);
+        hiloOrquestador1.cola(colaP);
+        hiloOrquestador1.cola(colaP);
+        hiloOrquestador1.esperar();
+        hiloOrquestador2.esperar();
+        hiloOrquestador3.esperar();
+        
+        
+    
+
 //        hiloReporte.start();
 //        hiloContador.start();
 //        hiloOrquestador.start();

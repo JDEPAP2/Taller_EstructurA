@@ -12,10 +12,17 @@ import static modelo.Tools.*;
  * @author jose.escobar
  */
 public class ActualizarCola extends Thread{
+    
+    Cola<Post> colaP;
+    
+    public void cola(Cola<Post> cola){
+        this.colaP = cola;
+    }
+            
     @Override
     public void run(){
         try{
-            Cola<Post> colaP = new Cola<>();
+            
             while(this.isAlive()){
                 Cola<Post> colaAux = crearPosts();                
                 while (!colaAux.estaVacia()){
