@@ -6,6 +6,7 @@
 package modelo;
 import datos.Post;
 import static modelo.OperacionesPost.*;
+import static procesos.Contador.formatSeconds;
 /**
  *
  * @author PC
@@ -148,5 +149,50 @@ public class Tools {
         Post postMenor = post;
         
         return new Orquestador(state, tiempopOrq, postsAtendidos, tiempoAtendido, tiempoPromedio, postMayor, postMenor);
+    }
+    
+    public static void countOrq() {
+        long i = 5;
+        boolean contando = true;
+        String contador = "00:00:00";
+        try {
+            while (i != -1) {
+                long count;
+                count = i;
+                contador = "contador " + formatSeconds(i);
+                System.out.println(contador);
+                Thread.sleep(1000); 
+                i--;
+            }
+            
+        } catch (InterruptedException e) {
+            System.out.println("w");
+        }
+        
+    }
+    
+    public static String formatSeconds(long timeInSeconds) {
+        long hours = timeInSeconds / 3600;
+        long secondsLeft = timeInSeconds - hours * 3600;
+        long minutes = secondsLeft / 60;
+        long seconds = secondsLeft - minutes * 60;
+        
+        String formattedTime = "";
+        if (hours < 10) {
+            formattedTime += "0";
+        }
+        formattedTime += hours + ":";
+        
+        if (minutes < 10) {
+            formattedTime += "0";
+        }
+        formattedTime += minutes + ":";
+        
+        if (seconds < 10) {
+            formattedTime += "0";
+        }
+        formattedTime += seconds;
+        
+        return formattedTime;
     }
 }

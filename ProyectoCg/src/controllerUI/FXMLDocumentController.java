@@ -87,6 +87,7 @@ public class FXMLDocumentController implements Initializable {
         ActualizarReporte hiloReporte = new ActualizarReporte();
         Contador hiloContador = new Contador();
         
+<<<<<<< HEAD
         hiloCola.start();
         hiloCola.cola(colaP);
         
@@ -100,10 +101,14 @@ public class FXMLDocumentController implements Initializable {
         
     
 
+=======
+//        hiloCola.start();
+>>>>>>> e4977907bccde9ad3c2b5981eb6db392d009e332
 //        hiloReporte.start();
 //        hiloContador.start();
 //        hiloOrquestador.start();
         
+        countOrq();
     }    
 
 }

@@ -35,7 +35,7 @@ public class ActualizarCola extends Thread{
             
 
         }catch(InterruptedException e){
-            System.out.println("w");
+            System.out.println("aaaaaa");
         }
     }
 }
