@@ -11,7 +11,7 @@ import datos.Post;
  */
 public class Orquestador {
 
-    private String state, tiempopOrq;
+    private String state, tiempopOrq, title;
     private long postsAtendidos, tiempoAtendido, tiempoPromedio;
     private Post postMayor, postMenor;
 
@@ -37,6 +37,14 @@ public class Orquestador {
         setTiempoPromedio(tiempoProm);
         setPostsAtendidos(postsAtendidos++);
     }   
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
     public String getState() {
         return state;
@@ -94,9 +102,10 @@ public class Orquestador {
         this.postMenor = postMenor;
     }
 
-    public Orquestador(String state, String tiempopOrq, long postsAtendidos, long tiempoAtendido, long tiempoPromedio, Post postMayor, Post postMenor) {
+    public Orquestador(String state, String tiempopOrq, String title, long postsAtendidos, long tiempoAtendido, long tiempoPromedio, Post postMayor, Post postMenor) {
         this.state = state;
         this.tiempopOrq = tiempopOrq;
+        this.title = title;
         this.postsAtendidos = postsAtendidos;
         this.tiempoAtendido = tiempoAtendido;
         this.tiempoPromedio = tiempoPromedio;
