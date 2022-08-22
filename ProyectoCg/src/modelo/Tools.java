@@ -28,18 +28,6 @@ public class Tools {
                 .append("<td>").append("<b>").append("Orquestador #03").append("</b>").append("</td>")
                 .append("</tr>");
         
-        sb.append("<tr>")
-                .append("<td>").append("LLAMAR METODO QUE DEFINE ESTADO").append("</td>")
-                .append("<td>").append("LLAMAR METODO QUE DEFINE ESTADO").append("</td>")
-                .append("<td>").append("LLAMAR METODO QUE DEFINE ESTADO").append("</td>")
-                .append("</tr>");
-        
-        sb.append("<tr>")
-                .append("<td>").append("LLAMAR METODO TIEMPO RESTANTE").append("</td>")
-                .append("<td>").append("LLAMAR METODO TIEMPO RESTANTE").append("</td>")
-                .append("<td>").append("LLAMAR METODO TIEMPO RESTANTE").append("</td>")
-                .append("</tr>");
-        
         sb.append("</table>");
         sb.append("</html>");
         
@@ -47,7 +35,8 @@ public class Tools {
     }
     
     
-    public static String colaAHtml(){
+    public static String colaAHtml(Cola<Post> laCola){
+        Cola<Post> colaD = OperacionesCola.colaDuplicada(laCola);
         
         StringBuilder sb = new StringBuilder("<html>");
         
@@ -60,6 +49,14 @@ public class Tools {
                 .append("<tr>").append("<td>").append("CONTENIDO").append("</td>").append("</tr>")
                 .append("<tr>").append("<td>").append("FECHA").append("</td>").append("</tr>")
                 .append("<tr>").append("<td>").append("TIEMPO PARA SER PROCESADOS").append("</td>").append("</tr>");
+        
+        while(colaD.estaVacia()){
+            Post e = colaD.desencolar();
+            sb.append("<tr>").append("<td>").append(e.getUsuario()).append("</td>").append("</tr>")
+                .append("<tr>").append("<td>").append(e.getContenido()).append("</td>").append("</tr>")
+                .append("<tr>").append("<td>").append(e.getFecha()).append("</td>").append("</tr>")
+                .append("<tr>").append("<td>").append(e.getTiempoP()).append("</td>").append("</tr>");
+        }
         
         sb.append("</table>");
         sb.append("</html>");
@@ -151,8 +148,8 @@ public class Tools {
         return new Orquestador(state, tiempopOrq, postsAtendidos, tiempoAtendido, tiempoPromedio, postMayor, postMenor);
     }
     
-    public static void countOrq() {
-        long i = 5;
+    public static void countOrq(long time) {
+        long i = time;
         boolean contando = true;
         String contador = "00:00:00";
         try {

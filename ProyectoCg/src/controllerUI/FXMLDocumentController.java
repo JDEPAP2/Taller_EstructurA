@@ -57,9 +57,9 @@ public class FXMLDocumentController implements Initializable {
     private void iniciarProceso(ActionEvent event) {
         String html = objTools.orquestadoresAHtml();
         webEngine1.loadContent(html);
-        
-        String html2 = objTools.colaAHtml();
+        String html2 = objTools.colaAHtml(colaP);
         webEngine2.loadContent(html2);
+
     }
     
     @FXML
@@ -86,14 +86,14 @@ public class FXMLDocumentController implements Initializable {
         ActualizarOrquestador hiloOrquestador3 = new  ActualizarOrquestador("hiloOrquestador3");
         ActualizarReporte hiloReporte = new ActualizarReporte();
         Contador hiloContador = new Contador();
-        
-<<<<<<< HEAD
+
+        hiloCola.cola(colaP);        
         hiloCola.start();
-        hiloCola.cola(colaP);
+
         
         hiloOrquestador1.cola(colaP);
-        hiloOrquestador1.cola(colaP);
-        hiloOrquestador1.cola(colaP);
+        hiloOrquestador2.cola(colaP);
+        hiloOrquestador3.cola(colaP);
         hiloOrquestador1.esperar();
         hiloOrquestador2.esperar();
         hiloOrquestador3.esperar();
@@ -101,14 +101,11 @@ public class FXMLDocumentController implements Initializable {
         
     
 
-=======
-//        hiloCola.start();
->>>>>>> e4977907bccde9ad3c2b5981eb6db392d009e332
+
 //        hiloReporte.start();
 //        hiloContador.start();
 //        hiloOrquestador.start();
         
-        countOrq();
     }    
 
 }

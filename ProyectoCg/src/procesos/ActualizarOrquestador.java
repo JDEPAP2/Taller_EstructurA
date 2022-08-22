@@ -33,18 +33,39 @@ public class ActualizarOrquestador extends Thread{
     
     @Override
     public void run(){
-        Orquestador orq = generarOrquestador();
+        Orquestador orq[] = new Orquestador[3];
+        orq[0] = generarOrquestador();
+        orq[1] = generarOrquestador();
+        orq[2] = generarOrquestador();
+        
 //        try{
-//            while(this.isAlive()){
-                System.out.println(orq.getState());
-                if(orq.getState().equals("Disponible")){
+            while(this.isAlive()){
+                if(orq[0].getState().equals("Disponible")){
                     Post elemento = colaP.desencolar();
-                    orq.procesarPost(elemento);
-                    long tiempo = 1000 * Integer.parseInt(orq.getTiempopOrq());
-                    orq.reporteOrq(elemento);
+                    orq[0].procesarPost(elemento);
+                    long tiempo = Integer.parseInt(orq[0].getTiempopOrq());
+                    countOrq(tiempo);
+                    orq[0].reporteOrq(elemento);
+                    System.out.println(this.getName() + orq[0].toString());
                 }
-                System.out.println(orq.toString());
-//            }
+                else if (orq[1].getState().equals("Disponible")){
+                    Post elemento = colaP.desencolar();
+                    orq[1].procesarPost(elemento);
+                    long tiempo = Integer.parseInt(orq[1].getTiempopOrq());
+                    countOrq(tiempo);
+                    orq[1].reporteOrq(elemento);
+                    System.out.println(this.getName() + orq[1].toString());
+                }
+                else{
+                    Post elemento = colaP.desencolar();
+                    orq[2].procesarPost(elemento);
+                    long tiempo = Integer.parseInt(orq[2].getTiempopOrq());
+                    countOrq(tiempo);
+                    orq[2].reporteOrq(elemento);
+                    System.out.println(this.getName() + orq[2].toString());
+                }
+                                
+            }
             
 //        }catch(InterruptedException e){
 //            System.out.println("w");
