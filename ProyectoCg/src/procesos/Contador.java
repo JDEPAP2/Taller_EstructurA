@@ -11,15 +11,44 @@ package procesos;
  */
 public class Contador extends Thread{
     @Override
-    public void run(){
-        try{
-            for (int i = 0; i < 10; i++) {
-                System.out.println("hilo4");
-                Thread.sleep(3000);                
+    public void run() {
+        try {
+            long i = 0;
+            while (this.isAlive()) {
+                long count;
+                count = i;
+                System.out.println("contador " + formatSeconds(i));
+                Thread.sleep(1000); 
+                i++;
             }
-
-        }catch(InterruptedException e){
+            
+        } catch (InterruptedException e) {
             System.out.println("w");
         }        
     }    
+    
+    public static String formatSeconds(long timeInSeconds) {
+        long hours = timeInSeconds / 3600;
+        long secondsLeft = timeInSeconds - hours * 3600;
+        long minutes = secondsLeft / 60;
+        long seconds = secondsLeft - minutes * 60;
+        
+        String formattedTime = "";
+        if (hours < 10) {
+            formattedTime += "0";
+        }
+        formattedTime += hours + ":";
+        
+        if (minutes < 10) {
+            formattedTime += "0";
+        }
+        formattedTime += minutes + ":";
+        
+        if (seconds < 10) {
+            formattedTime += "0";
+        }
+        formattedTime += seconds;
+        
+        return formattedTime;
+    }
 }
