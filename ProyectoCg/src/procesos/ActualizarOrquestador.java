@@ -4,7 +4,8 @@
  * and open the template in the editor.
  */
 package procesos;
-
+import modelo.Orquestador;
+import static modelo.Tools.*;
 /**
  *
  * @author jose.escobar
@@ -12,14 +13,7 @@ package procesos;
 public class ActualizarOrquestador extends Thread{
     @Override
     public void run(){
-        try{
-            for (int i = 0; i < 5; i++) {
-                System.out.println("hilo2");
-                Thread.sleep(3000);                
-            }
-
-        }catch(InterruptedException e){
-            System.out.println("w");
-        }        
+        
+  
     }    
 }
