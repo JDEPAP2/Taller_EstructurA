@@ -17,6 +17,10 @@ import javafx.scene.web.WebView;
 import modelo.Cola;
 import modelo.Tools;
 import static modelo.Tools.*;
+import procesos.ActualizarCola;
+import procesos.ActualizarOrquestador;
+import procesos.ActualizarReporte;
+import procesos.Contador;
 
 /**
  *
@@ -62,9 +66,6 @@ public class FXMLDocumentController implements Initializable {
     }    
     
     @Override
-<<<<<<< HEAD
-    public void initialize(URL url, ResourceBundle rb) {        
-=======
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         webEngine1 = wbOrquestadores.getEngine();
@@ -74,7 +75,17 @@ public class FXMLDocumentController implements Initializable {
         webEngine1.load("");
         webEngine2.load("");
         webEngine3.load("");
->>>>>>> origin/lalu
+        
+        ActualizarCola hiloCola = new ActualizarCola();
+        ActualizarOrquestador hiloOrquestador = new  ActualizarOrquestador();
+        ActualizarReporte hiloReporte = new ActualizarReporte();
+        Contador hiloContador = new Contador();
+        
+        hiloCola.start();
+//        hiloReporte.start();
+//        hiloContador.start();
+//        hiloOrquestador.start();
+        
     }    
 
 }

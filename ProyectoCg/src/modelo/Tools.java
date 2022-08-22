@@ -4,7 +4,8 @@
  * and open the template in the editor.
  */
 package modelo;
-
+import datos.Post;
+import static modelo.OperacionesPost.*;
 /**
  *
  * @author PC
@@ -123,4 +124,15 @@ public class Tools {
         return sb.toString();    
     }
     
+    public static Cola<Post> crearPosts(){
+        int num = (int) ( Math.random()*(1 + 5));
+        while (num == 0){
+            num = (int) ( Math.random()*(1 + 5));
+        }
+        Cola<Post> colaAux = new Cola<>();
+        for (int i = 0; i < num; i++) {            
+            colaAux.encolar(generarPost());            
+        }
+        return colaAux;
+    }
 }

@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package modelo;
-
+import datos.Post;
 import java.util.Calendar;
 
 /**
@@ -24,6 +24,9 @@ public class OperacionesPost {
         String fecha = generarFecha();        
         String contenido = generarTexto(6,5);
         String tiempoT = "" + ((int) (Math.random()* (0 + 6)));
+        while (tiempoT.equals("0")){
+            tiempoT = "" + ((int) (Math.random()* (0 + 6)));
+        }
         
         
         return new Post(usuario, fecha, contenido, tiempoT);
