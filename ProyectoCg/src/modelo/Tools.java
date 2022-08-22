@@ -135,4 +135,18 @@ public class Tools {
         }
         return colaAux;
     }
+    
+    public static Orquestador generarOrquestador(){
+        
+        Post post = new Post("0", "0", "0", "0");
+        String state = "Disponible";
+        String tiempopOrq = "0";        
+        long postsAtendidos = 0;
+        long tiempoAtendido = 0;
+        long tiempoPromedio = 0;
+        Post postMayor = post;
+        Post postMenor = post;
+        
+        return new Orquestador(state, tiempopOrq, postsAtendidos, tiempoAtendido, tiempoPromedio, postMayor, postMenor);
+    }
 }
