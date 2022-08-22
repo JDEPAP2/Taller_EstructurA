@@ -12,51 +12,23 @@ import static modelo.Tools.*;
  * @author jose.escobar
  */
 public class ActualizarCola extends Thread{
-     @Override
-    public void run() {
-        try {
-            long i = 0;
-            while (this.isAlive()) {
-                long count;
-                count = i;
-                System.out.println("contador " + formatSeconds(i));
-                Thread.sleep(1000); 
-                i++;
+    @Override
+    public void run(){
+        try{
+            Cola<Post> colaP = new Cola<>();
+            while(this.isAlive()){
+                Cola<Post> colaAux = crearPosts();                
+                while (!colaAux.estaVacia()){
+                    Post elemento = colaAux.desencolar();                   
+                    colaP.encolar(elemento);
+                }
+                Thread.sleep(3000);
+                System.out.println(colaP);
             }
             
-<<<<<<< HEAD
-        } catch (InterruptedException e) {
-            System.out.println("w");
-        }        
-    }    
-    
-    public static String formatSeconds(long timeInSeconds) {
-        long hours = timeInSeconds / 3600;
-        long secondsLeft = timeInSeconds - hours * 3600;
-        long minutes = secondsLeft / 60;
-        long seconds = secondsLeft - minutes * 60;
-        
-        String formattedTime = "";
-        if (hours < 10) {
-            formattedTime += "0";
-=======
 
         }catch(InterruptedException e){
             System.out.println("aaaaaa");
->>>>>>> 0d6691a2f8ef274b8d353b75a40e9f63bf804530
         }
-        formattedTime += hours + ":";
-        
-        if (minutes < 10) {
-            formattedTime += "0";
-        }
-        formattedTime += minutes + ":";
-        
-        if (seconds < 10) {
-            formattedTime += "0";
-        }
-        formattedTime += seconds;
-        
-        return formattedTime;
     }
 }
