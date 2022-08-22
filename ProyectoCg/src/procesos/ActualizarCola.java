@@ -24,6 +24,7 @@ public class ActualizarCola extends Thread{
                 i++;
             }
             
+<<<<<<< HEAD
         } catch (InterruptedException e) {
             System.out.println("w");
         }        
@@ -38,6 +39,11 @@ public class ActualizarCola extends Thread{
         String formattedTime = "";
         if (hours < 10) {
             formattedTime += "0";
+=======
+
+        }catch(InterruptedException e){
+            System.out.println("aaaaaa");
+>>>>>>> 0d6691a2f8ef274b8d353b75a40e9f63bf804530
         }
         formattedTime += hours + ":";
         
