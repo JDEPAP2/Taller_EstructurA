@@ -11,26 +11,18 @@ package modelo;
  */
 public class Orquestador {
 
-    private String state, tiempoP, postsAtendidos, tiempoAtendido, tiempoPromedio, postMayor, postMenor;
+    private String state;
+    long tiempoP, postsAtendidos, tiempoAtendido, tiempoPromedio, postMayor, postMenor;
 
-    public Orquestador(String state, String tiempoP, String postsAtendidos, String tiempoAtendido, String tiempoPromedio, String postMayor, String postMenor) {
-        this.state = state;
-        this.tiempoP = tiempoP;
-        this.postsAtendidos = postsAtendidos;
-        this.tiempoAtendido = tiempoAtendido;
-        this.tiempoPromedio = tiempoPromedio;
-        this.postMayor = postMayor;
-        this.postMenor = postMenor;
-    }
     
-    public static Orquestador generarOrquestador(){
+    public Orquestador generarOrquestador(){
         String state = "Disponible";
-        String tiempoP = "0";        
-        String postsAtendidos = "0";
-        String tiempoAtendido = "0";
-        String tiempoPromedio = "0";
-        String postMayor = "0";
-        String postMenor = "0";
+        long tiempoP = "0";        
+        long postsAtendidos = "0";
+        long tiempoAtendido = "0";
+        long tiempoPromedio = "0";
+        long postMayor = "0";
+        long postMenor = "0";
         
         return new Orquestador(state, tiempoP, postsAtendidos, tiempoAtendido, tiempoPromedio, postMayor, postMenor);
     }
@@ -43,57 +35,62 @@ public class Orquestador {
         this.state = state;
     }
 
-    public String getTiempoP() {
+    public long getTiempoP() {
         return tiempoP;
     }
 
-    public void setTiempoP(String tiempoP) {
+    public void setTiempoP(long tiempoP) {
         this.tiempoP = tiempoP;
     }
 
-    public String getPostsAtendidos() {
+    public long getPostsAtendidos() {
         return postsAtendidos;
     }
 
-    public void setPostsAtendidos(String postsAtendidos) {
+    public void setPostsAtendidos(long postsAtendidos) {
         this.postsAtendidos = postsAtendidos;
     }
 
-    public String getTiempoAtendido() {
+    public long getTiempoAtendido() {
         return tiempoAtendido;
     }
 
-    public void setTiempoAtendido(String tiempoAtendido) {
+    public void setTiempoAtendido(long tiempoAtendido) {
         this.tiempoAtendido = tiempoAtendido;
     }
 
-    public String getTiempoPromedio() {
+    public long getTiempoPromedio() {
         return tiempoPromedio;
     }
 
-    public void setTiempoPromedio(String tiempoPromedio) {
+    public void setTiempoPromedio(long tiempoPromedio) {
         this.tiempoPromedio = tiempoPromedio;
     }
 
-    public String getPostMayor() {
+    public long getPostMayor() {
         return postMayor;
     }
 
-    public void setPostMayor(String postMayor) {
+    public void setPostMayor(long postMayor) {
         this.postMayor = postMayor;
     }
 
-    public String getPostMenor() {
+    public long getPostMenor() {
         return postMenor;
     }
 
-    public void setPostMenor(String postMenor) {
+    public void setPostMenor(long postMenor) {
         this.postMenor = postMenor;
     }
 
-    @Override
-    public String toString() {
-        return "Orquestador{" + "state=" + state + ", tiempoP=" + tiempoP + ", postsAtendidos=" + postsAtendidos + ", tiempoAtendido=" + tiempoAtendido + ", tiempoPromedio=" + tiempoPromedio + ", postMayor=" + postMayor + ", postMenor=" + postMenor + '}';
+    public Orquestador(String state, long tiempoP, long postsAtendidos, long tiempoAtendido, long tiempoPromedio, long postMayor, long postMenor) {
+        this.state = state;
+        this.tiempoP = tiempoP;
+        this.postsAtendidos = postsAtendidos;
+        this.tiempoAtendido = tiempoAtendido;
+        this.tiempoPromedio = tiempoPromedio;
+        this.postMayor = postMayor;
+        this.postMenor = postMenor;
     }
-    
+
 }
