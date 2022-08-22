@@ -3,13 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package modelo;
+package datos;
+
+import modelo.Base;
 
 /**
  *
- * @author PC
+ * @author jose.escobar
  */
-public class Post {
+public class Post extends Base{
+    
     private String usuario, fecha, contenido, tiempoP;
     
     /**
@@ -97,13 +100,15 @@ public class Post {
         this.tiempoP = tiempoP;
     }
     
-    /**
-    * Genera una cadena de texto del objeto.
-    * @return cadena de tipo texto, con los atributos del objeto de la Clase Post.
-    */
+    public Base copy() {
+        return new Post(usuario, fecha, contenido, tiempoP);
+    }
+
+
     @Override
     public String toString() {
         return "Post(" + "usuario:" + usuario + ", fecha:" + fecha + ", contenido:" + contenido + ", tiempoP:" + tiempoP + ')';
     }
+    
     
 }
