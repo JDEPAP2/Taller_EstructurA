@@ -11,6 +11,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
+import modelo.Cola;
+import modelo.Tools;
+import static modelo.Tools.*;
 
 /**
  *
@@ -22,14 +27,46 @@ public class FXMLDocumentController implements Initializable {
     private Label label;
     
     @FXML
-    private void handleButtonAction(ActionEvent event) {
-        System.out.println("You clicked me!");
-        label.setText("Hello World!");
+    private WebView wbOrquestadores;
+    
+    @FXML
+    private WebView wbCola;
+        
+    @FXML
+    private WebView wbReporte;
+           
+    WebEngine webEngine1;
+    WebEngine webEngine2;
+    WebEngine webEngine3;
+
+    Tools objTools = new Tools();
+    
+    
+        @FXML
+    private void iniciarProceso(ActionEvent event) {
+        String html = objTools.convertirReporteAHtml();
+        webEngine1.loadContent(html);
+        
+        String html2 = objTools.convertirReporteAHtml();
+        webEngine2.loadContent(html2);
     }
+    
+    @FXML
+    private void finalizarProceso(ActionEvent event) {
+        String html = objTools.convertirReporteAHtml();
+        webEngine3.loadContent(html);
+    }    
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        webEngine1 = wbOrquestadores.getEngine();
+        webEngine2 = wbCola.getEngine();
+        webEngine3 = wbReporte.getEngine();
+        
+        webEngine1.load("");
+        webEngine2.load("");
+        webEngine3.load("");
     }    
-    
+
 }
