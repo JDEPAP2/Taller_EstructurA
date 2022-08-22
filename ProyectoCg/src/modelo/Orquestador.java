@@ -11,21 +11,46 @@ package modelo;
  */
 public class Orquestador {
 
-    private String state;
-    long tiempoP, postsAtendidos, tiempoAtendido, tiempoPromedio, postMayor, postMenor;
+    private String state, tiempopOrq;
+    private long postsAtendidos, tiempoAtendido, tiempoPromedio;
+    private Post postMayor, postMenor;
 
     
     public Orquestador generarOrquestador(){
-        String state = "Disponible";
-        long tiempoP = "0";        
-        long postsAtendidos = "0";
-        long tiempoAtendido = "0";
-        long tiempoPromedio = "0";
-        long postMayor = "0";
-        long postMenor = "0";
         
-        return new Orquestador(state, tiempoP, postsAtendidos, tiempoAtendido, tiempoPromedio, postMayor, postMenor);
+        Post post = new Post("0", "0", "0", "0");
+        String state = "Disponible";
+        String tiempopOrq = "0";        
+        long postsAtendidos = 0;
+        long tiempoAtendido = 0;
+        long tiempoPromedio = 0;
+        Post postMayor = post;
+        Post postMenor = post;
+        
+        return new Orquestador(state, tiempopOrq, postsAtendidos, tiempoAtendido, tiempoPromedio, postMayor, postMenor);
     }
+    
+    public void procesarPost ( Post post ){
+        setTiempopOrq(post.getTiempoP());
+        setState("Ocupado");
+    }
+    
+    public void reporteOrq ( Post post ){
+        long tiempoProm = getPostsAtendidos() / getTiempoAtendido();
+        long tiempoAt = tiempoAtendido + Long.parseLong(post.getTiempoP());
+        
+        if(Long.parseLong(post.getTiempoP()) > Long.parseLong(postMayor.getTiempoP())){
+            setPostMayor(post);
+        }
+        
+        if(Long.parseLong(post.getTiempoP()) < Long.parseLong(postMenor.getTiempoP())){
+            setPostMenor(post);
+        }
+        
+        setTiempoAtendido(tiempoAt);
+        setTiempoPromedio(tiempoProm);
+        setPostsAtendidos(postsAtendidos++);
+    }   
 
     public String getState() {
         return state;
@@ -35,12 +60,12 @@ public class Orquestador {
         this.state = state;
     }
 
-    public long getTiempoP() {
-        return tiempoP;
+    public String getTiempopOrq() {
+        return tiempopOrq;
     }
 
-    public void setTiempoP(long tiempoP) {
-        this.tiempoP = tiempoP;
+    public void setTiempopOrq(String tiempoP) {
+        this.tiempopOrq = tiempoP;
     }
 
     public long getPostsAtendidos() {
@@ -67,25 +92,25 @@ public class Orquestador {
         this.tiempoPromedio = tiempoPromedio;
     }
 
-    public long getPostMayor() {
+    public Post getPostMayor() {
         return postMayor;
     }
 
-    public void setPostMayor(long postMayor) {
+    public void setPostMayor(Post postMayor) {
         this.postMayor = postMayor;
     }
 
-    public long getPostMenor() {
+    public Post getPostMenor() {
         return postMenor;
     }
 
-    public void setPostMenor(long postMenor) {
+    public void setPostMenor(Post postMenor) {
         this.postMenor = postMenor;
     }
 
-    public Orquestador(String state, long tiempoP, long postsAtendidos, long tiempoAtendido, long tiempoPromedio, long postMayor, long postMenor) {
+    public Orquestador(String state, String tiempopOrq, long postsAtendidos, long tiempoAtendido, long tiempoPromedio, Post postMayor, Post postMenor) {
         this.state = state;
-        this.tiempoP = tiempoP;
+        this.tiempopOrq = tiempopOrq;
         this.postsAtendidos = postsAtendidos;
         this.tiempoAtendido = tiempoAtendido;
         this.tiempoPromedio = tiempoPromedio;
