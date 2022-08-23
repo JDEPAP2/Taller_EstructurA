@@ -37,38 +37,18 @@ public class FXMLDocumentController implements Initializable {
     private Label label;
     
     @FXML
-    private WebView wbReporte, wbCola, wbOrquestador;
+    private WebView wbReporte, wbCola, wbOrquestador1, wbOrquestador2, wbOrquestador3;
         
     @FXML
     private TextArea contador;
            
-    WebEngine webEngine1, webEngine2, webEngine3;
+    WebEngine webEngine1, webEngine2, webEngine3,  webEngine4,  webEngine5;
 
     Tools objTools = new Tools();
     
     
         @FXML
     private void iniciarProceso(ActionEvent event) {
-        
-//        ActualizarCola hiloCola = new ActualizarCola();
-//        ActualizarOrquestador hiloOrquestador1 = new  ActualizarOrquestador("hiloOrquestador1");
-//        ActualizarOrquestador hiloOrquestador2 = new  ActualizarOrquestador("hiloOrquestador2");
-//        ActualizarOrquestador hiloOrquestador3 = new  ActualizarOrquestador("hiloOrquestador3");
-//        ActualizarReporte hiloReporte = new ActualizarReporte();
-//        Contador hiloContador = new Contador();
-//
-//        hiloCola.cola(colaP);        
-//        hiloCola.start();
-//        
-//
-//
-//        
-//        hiloOrquestador1.cola(colaP);
-//        hiloOrquestador2.cola(colaP);
-//        hiloOrquestador3.cola(colaP);
-//        hiloOrquestador1.esperar();
-//        hiloOrquestador2.esperar();
-//        hiloOrquestador3.esperar();
         
         invocarCola();
         invocarOrq();
@@ -84,7 +64,9 @@ public class FXMLDocumentController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         colaP = new Cola<>();
-        webEngine1 = wbOrquestador.getEngine();
+        webEngine1 = wbOrquestador1.getEngine();
+        webEngine4 = wbOrquestador2.getEngine();
+        webEngine5 = wbOrquestador3.getEngine();
         webEngine2 = wbCola.getEngine();
         webEngine3 = wbReporte.getEngine();
         wbCola.setZoom(0.9);
@@ -119,7 +101,10 @@ public class FXMLDocumentController implements Initializable {
      
     public void invocarOrq(){
         
-        OrquestadorTask valor = new OrquestadorTask(colaP);
+        OrquestadorTask valor = new OrquestadorTask(colaP, "Orquestador 1");
+        OrquestadorTask valor1 = new OrquestadorTask(colaP, "Orquestador 2");
+        OrquestadorTask valor2 = new OrquestadorTask(colaP, "Orquestador 3");
+        
         valor.valueProperty().addListener(new ChangeListener<String>(){
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue){
@@ -127,10 +112,23 @@ public class FXMLDocumentController implements Initializable {
             }
         });
         
-        Thread th = new Thread(valor);
-        Thread th1 = new Thread(valor);
-        Thread th2 = new Thread(valor);
+        valor1.valueProperty().addListener(new ChangeListener<String>(){
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue){
+                webEngine4.loadContent(newValue);
+            }
+        });
+                
+        valor2.valueProperty().addListener(new ChangeListener<String>(){
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue){
+                webEngine5.loadContent(newValue);
+            }
+        });
         
+        Thread th = new Thread(valor);
+        Thread th1 = new Thread(valor1);
+        Thread th2 = new Thread(valor2);      
         th.start();th1.start();th2.start();
         
         
