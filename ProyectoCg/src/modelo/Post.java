@@ -6,8 +6,13 @@
 package modelo;
 
 /**
- *
- * @author PC
+ * Descripción:
+ * @author isabella.duran@uao.edu.co Isabella Duran Cód. 2210296
+ * @author jose.escobar@uao.edu.co Jose D. Escobar Cód. 2210172
+ * @author laura.riascos@uao.edu.co Laura C. Riascos Cód. 2211185
+ * @author Juan_jose.viveros@uao.edu.co Juan J. Viveros Cód. 2210208
+ * @date 25 de Agosto de 2022
+ * @version 1.8
  */
 public class Post {
     private String usuario, fecha, contenido, tiempoP;
