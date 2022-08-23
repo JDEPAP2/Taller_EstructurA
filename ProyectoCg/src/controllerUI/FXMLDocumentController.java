@@ -20,11 +20,10 @@ import javafx.scene.web.WebView;
 import modelo.Cola;
 import modelo.Tools;
 import static modelo.Tools.*;
-import procesos.ActualizarCola;
-import procesos.ActualizarOrquestador;
 import procesos.ActualizarReporte;
 import procesos.ColaTask;
 import procesos.Contador;
+import procesos.OrquestadorTask;
 
 /**
  *
@@ -38,12 +37,12 @@ public class FXMLDocumentController implements Initializable {
     private Label label;
     
     @FXML
-    private WebView wbReporte, wbCola, wbOrquestador, wbOrquestador1, wbOrquestador2;
+    private WebView wbReporte, wbCola, wbOrquestador;
         
     @FXML
     private TextArea contador;
            
-    WebEngine webEngine1, webEngine2, webEngine3, webEngine4, webEngine5;
+    WebEngine webEngine1, webEngine2, webEngine3;
 
     Tools objTools = new Tools();
     
@@ -71,16 +70,14 @@ public class FXMLDocumentController implements Initializable {
 //        hiloOrquestador2.esperar();
 //        hiloOrquestador3.esperar();
         
-        invokeCola();
-        String html = objTools.orquestadoresAHtml();
-        webEngine1.loadContent(html);
-
+        invocarCola();
+        invocarOrq();
+        
     }
     
     @FXML
     private void finalizarProceso(ActionEvent event) {
-        String html = objTools.convertirReporteAHtml();
-        webEngine3.loadContent(html);
+
     }    
     
     @Override
@@ -88,8 +85,6 @@ public class FXMLDocumentController implements Initializable {
         // TODO
         colaP = new Cola<>();
         webEngine1 = wbOrquestador.getEngine();
-        webEngine4 = wbOrquestador1.getEngine();
-        webEngine5 = wbOrquestador2.getEngine();
         webEngine2 = wbCola.getEngine();
         webEngine3 = wbReporte.getEngine();
         wbCola.setZoom(0.9);
@@ -108,7 +103,7 @@ public class FXMLDocumentController implements Initializable {
 //        hiloOrquestador.start();
         
     }    
-     public void invokeCola(){
+     public void invocarCola(){
         ColaTask valor = new ColaTask(colaP);
         valor.valueProperty().addListener(new ChangeListener<String>(){
             @Override
@@ -121,4 +116,23 @@ public class FXMLDocumentController implements Initializable {
         th.start();
         
      }
+     
+    public void invocarOrq(){
+        
+        OrquestadorTask valor = new OrquestadorTask(colaP);
+        valor.valueProperty().addListener(new ChangeListener<String>(){
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue){
+                webEngine1.loadContent(newValue);
+            }
+        });
+        
+        Thread th = new Thread(valor);
+        Thread th1 = new Thread(valor);
+        Thread th2 = new Thread(valor);
+        
+        th.start();th1.start();th2.start();
+        
+        
+    }
 }

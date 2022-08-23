@@ -14,7 +14,7 @@ import modelo.Orquestador;
  */
 public class Tools {
     
-    public static String orquestadoresAHtml(){
+    public static String orquestadoresAHtml(Orquestador orq){
         
         StringBuilder sb = new StringBuilder("<html>");
         
@@ -22,13 +22,16 @@ public class Tools {
         
         sb.append("<table>");
         sb.append("<table align=\"center\" border=\"1\" ");
-        
-        sb.append("<tr>").append("<tr style=\"background-color: rgb(217, 208, 222)\">")
-                .append("<td>").append("<b>").append("Orquestador #01").append("</b>").append("</td>")
-                .append("<td>").append("<b>").append("Orquestador #02").append("</b>").append("</td>")
-                .append("<td>").append("<b>").append("Orquestador #03").append("</b>").append("</td>")
-                .append("</tr>");
-        
+//        for (int i = 0; i < orq.length; i++) {
+            sb.append("<tr>").append("<tr style=\"background-color: rgb(217, 208, 222)\">")
+                .append("<td>").append("<b>").append(orq.getTitle()).append("</b>").append("</td>").append("</tr>");        
+            sb.append("<tr>").append("<tr style=\"background-color: rgb(217, 208, 222)\">")
+                .append("<td>").append("<b>").append(countOrq(Long.parseLong(orq.getTiempopOrq()))).append("</b>").append("</td>").append("</tr>");
+            sb.append("<tr>").append("<tr style=\"background-color: rgb(217, 208, 222)\">")
+                .append("<td>").append("<b>").append(orq.getState()).append("</b>").append("</td>").append("</tr><br>");
+            
+//        }
+                        
         sb.append("</table>");
         sb.append("</html>");
         
@@ -49,13 +52,12 @@ public class Tools {
         sb.append("<tr>").append("<td align='center'>").append("Cola").append("</td>").append("</tr>");
         
         while(!colaD.estaVacia()){
-            System.out.println("entro2");
             Post e = colaD.desencolar();
             sb.append("<tr>").append("<td>").append("<div>")
                     .append("<h3>").append(e.getUsuario()).append("</h3>")
-                    .append("<p>").append("Contenido:" + e.getContenido()).append("</p>")
-                    .append("<p>").append("Fecha:" + e.getFecha()).append("</p>")
-                    .append("<p>").append("Tiempo de Procesamiento:" + e.getTiempoP()).append("</p>")
+                    .append("<p>").append("Contenido: " + e.getContenido()).append("</p>")
+                    .append("<p>").append("Fecha: " + e.getFecha()).append("</p>")
+                    .append("<p>").append("Tiempo de Procesamiento: " + e.getTiempoP()).append("</p>")
                     .append("</div>").append("</td>").append("</tr>");
         }
         
@@ -145,13 +147,11 @@ public class Tools {
         return colaAux;
     }
     
-    public static Orquestador generarOrquestador(){
+    public static Orquestador generarOrquestador(String name){
         
-        int num = 0;
         
         Post post = new Post("0", "0", "0", "0");
         String state = "Disponible";
-        String title = "Orquestador" + num++;
         String tiempopOrq = "0";        
         long postsAtendidos = 0;
         long tiempoAtendido = 0;
@@ -159,27 +159,15 @@ public class Tools {
         Post postMayor = post;
         Post postMenor = post;
         
-        return new Orquestador(state, tiempopOrq, title, postsAtendidos, tiempoAtendido, tiempoPromedio, postMayor, postMenor);
+        return new Orquestador(state, tiempopOrq, name, postsAtendidos, tiempoAtendido, tiempoPromedio, postMayor, postMenor);
     }
     
-    public static void countOrq(long time) {
+        public static String countOrq(long time) {
         long i = time;
         boolean contando = true;
         String contador = "00:00:00";
-        try {
-            while (i != -1) {
-                long count;
-                count = i;
-                contador = "contador " + formatSeconds(i);
-                System.out.println(contador);
-                Thread.sleep(1000); 
-                i--;
-            }
-            
-        } catch (InterruptedException e) {
-            System.out.println("w");
-        }
-        
+        contador = formatSeconds(i); 
+        return contador;
     }
     
     public static String formatSeconds(long timeInSeconds) {
@@ -206,4 +194,5 @@ public class Tools {
         
         return formattedTime;
     }
-}
+}    
+    

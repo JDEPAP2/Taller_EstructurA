@@ -12,7 +12,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="880.0" prefWidth="677.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllerUI.FXMLDocumentController">
    <children>
-      <WebView fx:id="wbOrquestadores" layoutX="38.0" layoutY="64.0" prefHeight="118.0" prefWidth="333.0" />
+      <WebView fx:id="wbOrquestador" layoutX="38.0" layoutY="64.0" prefHeight="370.0" prefWidth="333.0" />
       <WebView fx:id="wbReporte" layoutX="36.0" layoutY="512.0" prefHeight="302.0" prefWidth="620.0" />
       <WebView fx:id="wbCola" layoutX="391.0" layoutY="64.0" prefHeight="370.0" prefWidth="270.0" />
       <Separator fx:id="separador1" layoutX="36.0" layoutY="446.0" prefHeight="16.0" prefWidth="620.0" />
@@ -26,7 +26,5 @@
       <Button layoutX="180.0" layoutY="462.0" mnemonicParsing="false" onAction="#iniciarProceso" prefHeight="25.0" prefWidth="130.0" text="Iniciar Proceso" />
       <Button layoutX="316.0" layoutY="462.0" mnemonicParsing="false" onAction="#finalizarProceso" prefHeight="25.0" prefWidth="130.0" text="Finalizar Proceso" />
       <TextArea fx:id="contador" layoutX="36.0" layoutY="824.0" prefHeight="27.0" prefWidth="209.0" />
-      <WebView fx:id="wbOrquestador1" layoutX="38.0" layoutY="190.0" prefHeight="118.0" prefWidth="333.0" />
-      <WebView fx:id="wbOrquestador2" layoutX="38.0" layoutY="316.0" prefHeight="118.0" prefWidth="333.0" />
    </children>
 </AnchorPane>

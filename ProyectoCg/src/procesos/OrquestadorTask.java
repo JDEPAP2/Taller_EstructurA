@@ -16,41 +16,35 @@ import static modelo.Tools.*;
  */
 public class OrquestadorTask extends Task<String>{
     Cola<Post> colaP;
+    Orquestador orq = generarOrquestador("Orquestador1");
     
     public OrquestadorTask(Cola<Post> cola){
         this.colaP = cola;
+
     }
     
     @Override
     protected String call() throws Exception{
-        Orquestador orq[] = new Orquestador[3];
-        orq[0] = generarOrquestador();
-        orq[1] = generarOrquestador();
-        orq[2] = generarOrquestador();
-        
+        Thread.sleep(9000);
         while(!this.isCancelled()){
-                if(orq[0].getState().equals("Disponible")){
+                if(orq.getState().equals("Disponible")){
                     Post elemento = colaP.desencolar();
-                    orq[0].procesarPost(elemento);
-                    long tiempo = Integer.parseInt(orq[0].getTiempopOrq());
-                    countOrq(tiempo);
-                    orq[0].reporteOrq(elemento);
-                }
-                else if (orq[1].getState().equals("Disponible")){
-                    Post elemento = colaP.desencolar();
-                    orq[1].procesarPost(elemento);
-                }
-                else if (orq[2].getState().equals("Disponible")){
-                    Post elemento = colaP.desencolar();
-                    orq[2].procesarPost(elemento);
-                    long tiempo = Integer.parseInt(orq[2].getTiempopOrq());
-                    countOrq(tiempo);
-                    orq[2].reporteOrq(elemento);
-                }
-                                
-            }
-        return colaAHtml(colaP);
+                    orq.procesarPost(elemento);
+                    int tiempo = Integer.parseInt(orq.getTiempopOrq());
+                    while(tiempo != 0){
+                        updateValue(orquestadoresAHtml(orq));                        
+                        tiempo = tiempo -1;
+                        orq.setTiempopOrq(""+tiempo);
+                        Thread.sleep(1000);
+                    }
+                    orq.reporteOrq(elemento);
+                    updateValue(orquestadoresAHtml(orq));
+                    Thread.sleep(1000);
+                    
+                }        
+        }return orquestadoresAHtml(orq);
     }
+    
 
     
 }

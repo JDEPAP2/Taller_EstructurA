@@ -26,7 +26,6 @@ public class ColaTask extends Task<String>{
                     colaP.encolar(elemento);
                 }
                 Thread.sleep(3000);
-                System.out.println("entro");
                 updateValue(colaAHtml(colaP));
             }
         return colaAHtml(colaP);
