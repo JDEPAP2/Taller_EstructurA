@@ -45,17 +45,17 @@ public class Tools {
         sb.append("<table>");        
         sb.append("<table align=\"center\" border=\"1\">");
         
-        sb.append("<tr>").append("<td>").append("USUARIO").append("</td>").append("</tr>")
-                .append("<tr>").append("<td>").append("CONTENIDO").append("</td>").append("</tr>")
-                .append("<tr>").append("<td>").append("FECHA").append("</td>").append("</tr>")
-                .append("<tr>").append("<td>").append("TIEMPO PARA SER PROCESADOS").append("</td>").append("</tr>");
+        sb.append("<tr>").append("<td align='center'>").append("Cola").append("</td>").append("</tr>");
         
-        while(colaD.estaVacia()){
+        while(!colaD.estaVacia()){
+            System.out.println("entro2");
             Post e = colaD.desencolar();
-            sb.append("<tr>").append("<td>").append(e.getUsuario()).append("</td>").append("</tr>")
-                .append("<tr>").append("<td>").append(e.getContenido()).append("</td>").append("</tr>")
-                .append("<tr>").append("<td>").append(e.getFecha()).append("</td>").append("</tr>")
-                .append("<tr>").append("<td>").append(e.getTiempoP()).append("</td>").append("</tr>");
+            sb.append("<tr>").append("<td>").append("<div>")
+                    .append("<h3>").append(e.getUsuario()).append("</h3>")
+                    .append("<p>").append("Contenido:" + e.getContenido()).append("</p>")
+                    .append("<p>").append("Fecha:" + e.getFecha()).append("</p>")
+                    .append("<p>").append("Tiempo de Procesamiento:" + e.getTiempoP()).append("</p>")
+                    .append("</div>").append("</td>").append("</tr>");
         }
         
         sb.append("</table>");

@@ -4,39 +4,31 @@
  * and open the template in the editor.
  */
 package procesos;
-import datos.Post;
+import javafx.concurrent.Task;
 import modelo.Cola;
+import datos.Post;
 import static modelo.Tools.*;
-import controllerUI.FXMLDocumentController;
 /**
  *
- * @author jose.escobar
+ * @author PC
  */
-public class ActualizarCola extends Thread{
-    
+public class ColaTask extends Task<String>{
     Cola<Post> colaP;
-    
-    public void cola(Cola<Post> cola){
+    public ColaTask(Cola<Post> cola) {
         this.colaP = cola;
     }
-            
     @Override
-    public void run(){
-        try{
-            
-            while(this.isAlive()){
+    protected String call() throws Exception{
+        while(!this.isCancelled()){
                 Cola<Post> colaAux = crearPosts();                
                 while (!colaAux.estaVacia()){
                     Post elemento = colaAux.desencolar();                   
                     colaP.encolar(elemento);
                 }
                 Thread.sleep(3000);
-                System.out.println(colaP);
+                System.out.println("entro");
+                updateValue(colaAHtml(colaP));
             }
-            
-
-        }catch(InterruptedException e){
-            System.out.println("aaaaaa");
-        }
+        return colaAHtml(colaP);
     }
 }

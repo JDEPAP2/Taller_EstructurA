@@ -39,7 +39,7 @@ public class OperacionesPost {
     * @return cadena de texto con una palabra o  un parrafo.
     */
     public static String generarTexto(int num, int nom){
-        String ref = "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRsTtUuVvWwXxYyZz";
+        String ref = "abcdefghijklmnopqstuvwxyz";
         String palabra = "", res = "";
         char letra;    
         for (int j = 0; j < nom; j++) {
