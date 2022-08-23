@@ -4,12 +4,23 @@
  * and open the template in the editor.
  */
 package procesos;
+import modelo.Orquestador;
 
 /**
  *
  * @author jose.escobar
  */
 public class ActualizarReporte extends Thread{
+    
+    Orquestador orq[] = new Orquestador[3];
+    
+    public void hola(Orquestador orq[]){
+        for (int i = 0; i < orq.length; i++) {
+            Orquestador orquestador = orq[i];
+            this.orq[i] = orq[i];
+        }
+    }
+    
     @Override
     public void run(){
         try{
