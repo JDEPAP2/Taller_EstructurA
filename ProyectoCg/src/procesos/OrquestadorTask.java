@@ -17,37 +17,41 @@ import static modelo.Tools.*;
 public class OrquestadorTask extends Task<String>{
     Cola<Post> colaP;
     String name;
-    Orquestador orq; 
-    public OrquestadorTask(Cola<Post> cola, String nombre){
+    Orquestador orq;
+    
+    public OrquestadorTask(Cola<Post> cola, Orquestador orques){
         this.colaP = cola;
-        this.name = nombre;
-        
-
+        this.orq = orques;
+        this.name = orq.getTitle();
     }
     
     @Override
     protected String call(){
+        
         try{
-        Thread.sleep(9000);
-        orq = generarOrquestador(name);
-            while(!this.isCancelled()){
-                    if(orq.getState().equals("Disponible")){
-                        Post elemento = colaP.desencolar();
-                        orq.procesarPost(elemento);
-                        int tiempo = Integer.parseInt(orq.getTiempopOrq());
-                        while(tiempo != 0){
-                            updateValue(orquestadoresAHtml(orq));                        
-                            tiempo = tiempo -1;
-                            orq.setTiempopOrq(""+tiempo);
-                            Thread.sleep(1000);
-                        }
-                        orq.reporteOrq(elemento);
-                        updateValue(orquestadoresAHtml(orq));
+            if(name.equals("Orquestador 1")){
+                Thread.sleep(9000);
+        }else if(name.equals("Orquestador 2")){
+                Thread.sleep(9200);
+        }else{
+                Thread.sleep(9400);            
+        }
+        while(!this.isCancelled()){
+                if(orq.getState().equals("Disponible")){
+                    Post elemento = colaP.desencolar();
+                    orq.procesarPost(elemento);
+                    int tiempo = Integer.parseInt(orq.getTiempopOrq());
+                    while(tiempo != 0){
                         Thread.sleep(1000);
-
+                        updateValue(orquestadoresAHtml(orq));
+                        tiempo--;
+                        orq.setTiempopOrq(""+ tiempo);                                                                       
                     }
-            }}catch(Exception e){
-                System.out.println(name + "  " + e.toString());
+                    orq.reporteOrq(elemento);
+                    updateValue(orquestadoresAHtml(orq));
+                }
+        }}catch(Exception e){
+            System.out.println(name + "  " + e.toString());
         }
         return orquestadoresAHtml(orq);
     }

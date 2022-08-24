@@ -25,8 +25,9 @@ public class ColaTask extends Task<String>{
                     Post elemento = colaAux.desencolar();                   
                     colaP.encolar(elemento);
                 }
-                Thread.sleep(3000);
                 updateValue(colaAHtml(colaP));
+                Thread.sleep(3000);
+                
             }
         return colaAHtml(colaP);
     }

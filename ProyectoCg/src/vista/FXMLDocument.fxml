@@ -10,23 +10,23 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="880.0" prefWidth="677.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllerUI.FXMLDocumentController">
+<AnchorPane id="AnchorPane" prefHeight="893.0" prefWidth="552.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllerUI.FXMLDocumentController">
    <children>
-      <WebView fx:id="wbOrquestador1" layoutX="36.0" layoutY="64.0" prefHeight="118.0" prefWidth="333.0" />
-      <WebView fx:id="wbReporte" layoutX="36.0" layoutY="512.0" prefHeight="302.0" prefWidth="620.0" />
-      <WebView fx:id="wbCola" layoutX="391.0" layoutY="64.0" prefHeight="370.0" prefWidth="270.0" />
-      <Separator fx:id="separador1" layoutX="36.0" layoutY="446.0" prefHeight="16.0" prefWidth="620.0" />
-      <Separator fx:id="separador2" layoutX="36.0" layoutY="494.0" prefHeight="0.0" prefWidth="548.0" />
-      <Label alignment="CENTER" layoutX="42.0" layoutY="30.0" prefHeight="27.0" prefWidth="620.0" text="Servidor">
+      <WebView fx:id="wbOrquestador1" layoutX="36.0" layoutY="72.0" prefHeight="118.0" prefWidth="146.0" />
+      <WebView fx:id="wbReporte" layoutX="34.0" layoutY="536.0" prefHeight="302.0" prefWidth="486.0" />
+      <WebView fx:id="wbCola" layoutX="208.0" layoutY="70.0" prefHeight="370.0" prefWidth="312.0" />
+      <Separator fx:id="separador2" layoutX="97.0" layoutY="462.0" prefHeight="0.0" prefWidth="360.0" />
+      <Label alignment="CENTER" layoutX="42.0" layoutY="30.0" prefHeight="27.0" prefWidth="479.0" text="Servidor" textFill="#532e68">
          <font>
-            <Font size="18.0" />
+            <Font name="System Bold" size="26.0" />
          </font>
       </Label>
-      <Separator layoutX="378.0" layoutY="64.0" orientation="VERTICAL" prefHeight="370.0" prefWidth="0.0" />
-      <Button layoutX="180.0" layoutY="462.0" mnemonicParsing="false" onAction="#iniciarProceso" prefHeight="25.0" prefWidth="130.0" text="Iniciar Proceso" />
-      <Button layoutX="316.0" layoutY="462.0" mnemonicParsing="false" onAction="#finalizarProceso" prefHeight="25.0" prefWidth="130.0" text="Finalizar Proceso" />
-      <TextArea fx:id="contador" layoutX="36.0" layoutY="824.0" prefHeight="27.0" prefWidth="209.0" />
-      <WebView fx:id="wbOrquestador2" layoutX="36.0" layoutY="197.0" prefHeight="118.0" prefWidth="333.0" />
-      <WebView fx:id="wbOrquestador3" layoutX="36.0" layoutY="322.0" prefHeight="118.0" prefWidth="333.0" />
+      <Separator layoutX="195.0" layoutY="100.0" orientation="VERTICAL" prefHeight="320.0" prefWidth="7.0" />
+      <Button layoutX="137.0" layoutY="474.0" mnemonicParsing="false" onAction="#iniciarProceso" prefHeight="25.0" prefWidth="130.0" style="-fx-background-color: rgb(217, 208, 222);" text="Iniciar Proceso" />
+      <Button layoutX="282.0" layoutY="474.0" mnemonicParsing="false" onAction="#finalizarProceso" prefHeight="25.0" prefWidth="130.0" style="-fx-background-color: rgb(217, 208, 222);" text="Finalizar Proceso" />
+      <TextArea fx:id="contador" layoutX="172.0" layoutY="850.0" prefHeight="16.0" prefWidth="209.0" />
+      <WebView fx:id="wbOrquestador2" layoutX="36.0" layoutY="197.0" prefHeight="118.0" prefWidth="146.0" />
+      <WebView fx:id="wbOrquestador3" layoutX="36.0" layoutY="322.0" prefHeight="118.0" prefWidth="146.0" />
+      <Separator fx:id="separador21" layoutX="96.0" layoutY="511.0" prefHeight="0.0" prefWidth="360.0" />
    </children>
 </AnchorPane>

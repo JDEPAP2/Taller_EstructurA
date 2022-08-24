@@ -18,17 +18,22 @@ public class Tools {
         
         StringBuilder sb = new StringBuilder("<html>");
         
-        sb.append("<noscript>").append("</noscript>");
+//        sb.append("<noscript>").append("</noscript>");
         
         sb.append("<table>");
-        sb.append("<table align=\"center\" border=\"1\" ");
-//        for (int i = 0; i < orq.length; i++) {
-            sb.append("<tr>").append("<tr style=\"background-color: rgb(217, 208, 222)\">")
-                .append("<td>").append("<b>").append(orq.getTitle()).append("</b>").append("</td>").append("</tr>");        
-            sb.append("<tr>").append("<tr style=\"background-color: rgb(217, 208, 222)\">")
-                .append("<td>").append("<b>").append(countOrq(Long.parseLong(orq.getTiempopOrq()))).append("</b>").append("</td>").append("</tr>");
-            sb.append("<tr>").append("<tr style=\"background-color: rgb(217, 208, 222)\">")
-                .append("<td>").append("<b>").append(orq.getState()).append("</b>").append("</td>").append("</tr><br>");
+        sb.append("<table align=\"center\" border=\"1\" style=\"font-family: sans-serif\">");
+            sb.append("<tr>").append("<tr align=\"center\" style=\"background-color: rgb(217, 208, 222)\">")
+                .append("<td>").append("<small><b>").append(" ").append(orq.getTitle()).append(" ").append("</b><small>").append("</td>").append("</tr>");        
+            sb.append("<tr>").append("<tr>")
+                .append("<td>").append("<small>").append(countOrq(Long.parseLong(orq.getTiempopOrq()))).append("</small>").append("</td>").append("</tr>");            
+                    if (orq.getState().equals("Ocupado")){
+                        sb.append("<tr>").append("<tr style=\"color: red\">")
+                        .append("<td>").append("<small>").append(orq.getState()).append("</small>").append("</td>").append("</tr><br>");
+                    }else{
+                        sb.append("<tr>").append("<tr style=\"color: green\">")
+                        .append("<td>").append("<small>").append(orq.getState()).append("</small>").append("</td>").append("</tr><br>");
+                    }
+                
             
 //        }
                         
@@ -47,17 +52,17 @@ public class Tools {
         sb.append("<noscript>").append("</noscript>");
         
         sb.append("<table>");        
-        sb.append("<table align=\"center\" border=\"1\">");
+        sb.append("<table align=\"center\" border=\"1\" style=\"font-family: sans-serif\">");
         
-        sb.append("<tr>").append("<td align='center'>").append("Cola").append("</td>").append("</tr>");
+        sb.append("<tr>").append("<td align='center' style=\"background-color: rgb(217, 208, 222)\">").append("<b>Cola</b>").append("</td>").append("</tr>");
         
         while(!colaD.estaVacia()){
             Post e = colaD.desencolar();
             sb.append("<tr>").append("<td>").append("<div>")
-                    .append("<h3>").append(e.getUsuario()).append("</h3>")
-                    .append("<p>").append("Contenido: " + e.getContenido()).append("</p>")
-                    .append("<p>").append("Fecha: " + e.getFecha()).append("</p>")
-                    .append("<p>").append("Tiempo de Procesamiento: " + e.getTiempoP()).append("</p>")
+                    .append("<b>").append(e.getUsuario()).append("</b><br>")
+                    .append("<small>").append("Contenido: " + e.getContenido()).append("</small><br>")
+                    .append("<small>").append("Fecha: " + e.getFecha()).append("</small><br>")
+                    .append("<small>").append("Tiempo de Procesamiento: " + e.getTiempoP()).append("</small><br>")
                     .append("</div>").append("</td>").append("</tr>");
         }
         
@@ -74,47 +79,46 @@ public class Tools {
         
         sb.append("<noscript>").append("</noscript>");
         
-        sb.append("<table>");
-        sb.append("<table align=\"center\" border=\"1\" ");        
+        sb.append("<table align=\"center\" border=\"1\" style=\"font-family: sans-serif\">");        
         
-        sb.append("<tr>").append("<tr style=\"background-color: rgb(217, 208, 222)\">")
+        sb.append("<tr align='center' style=\"background-color: rgb(217, 208, 222)\">")
                 .append("<td>").append("<b>").append(orq[0].getTitle()).append("</b>").append("</td>")
                 .append("<td>").append("<b>").append(orq[1].getTitle()).append("</b>").append("</td>")
                 .append("<td>").append("<b>").append(orq[2].getTitle()).append("</b>").append("</td>")
                 .append("</tr>");
         
         sb.append("<tr>")
-                .append("<td>").append("Cantidad Total de Post: " + orq[0].getPostsAtendidos()).append("</td>")
-                .append("<td>").append("Cantidad Total de Post: " + orq[1].getPostsAtendidos()).append("</td>")
-                .append("<td>").append("Cantidad Total de Post: " + orq[2].getPostsAtendidos()).append("</td>")
+                .append("<td>").append("<small>").append("Cantidad Total de Post: ").append(orq[0].getPostsAtendidos()).append("</small>").append("</td>")
+                .append("<td>").append("<small>").append("Cantidad Total de Post: ").append(orq[1].getPostsAtendidos()).append("</small>").append("</td>")
+                .append("<td>").append("<small>").append("Cantidad Total de Post: ").append(orq[2].getPostsAtendidos()).append("</small>").append("</td>")
                 .append("</tr>");
         
         sb.append("<tr>")
-                .append("<td>").append("Tiempo Total: " + orq[0].getTiempoAtendido()).append("</td>")
-                .append("<td>").append("Tiempo Total: " + orq[1].getTiempoAtendido()).append("</td>")
-                .append("<td>").append("Tiempo Total: " + orq[2].getTiempoAtendido()).append("</td>")
+                .append("<td>").append("<small>").append("Tiempo Total: ").append(orq[0].getTiempoAtendido()).append("</small>").append("</td>")
+                .append("<td>").append("<small>").append("Tiempo Total: ").append(orq[1].getTiempoAtendido()).append("</small>").append("</td>")
+                .append("<td>").append("<small>").append("Tiempo Total: ").append(orq[2].getTiempoAtendido()).append("</small>").append("</td>")
                 .append("</tr>");
         
         sb.append("<tr>")
-                .append("<td>").append("Tiempo Promedio: " + orq[0].getTiempoPromedio()).append("</td>")
-                .append("<td>").append("Tiempo Promedio: " + orq[1].getTiempoPromedio()).append("</td>")
-                .append("<td>").append("Tiempo Promedio: " + orq[2].getTiempoPromedio()).append("</td>")
+                .append("<td>").append("<small>").append("Tiempo Promedio: ").append(orq[0].getTiempoPromedio()).append("</small>").append("</td>")
+                .append("<td>").append("<small>").append("Tiempo Promedio: ").append(orq[1].getTiempoPromedio()).append("</small>").append("</td>")
+                .append("<td>").append("<small>").append("Tiempo Promedio: ").append(orq[2].getTiempoPromedio()).append("</small>").append("</td>")
                 .append("</tr>");
         
         sb.append("<tr>")
-                .append("<td>").append("Post en el que se demoro más tiempo: " + orq[0].getPostMayor()).append("</td>")
-                .append("<td>").append("Post en el que se demoro más tiempo: " + orq[1].getPostMayor()).append("</td>")
-                .append("<td>").append("Post en el que se demoro más tiempo: " + orq[2].getPostMayor()).append("</td>")
+                .append("<td>").append("<small>").append("Post en el que se demoro más tiempo: ").append(orq[0].getPostMayor()).append("</small>").append("</td>")
+                .append("<td>").append("<small>").append("Post en el que se demoro más tiempo: ").append(orq[1].getPostMayor()).append("</small>").append("</td>")
+                .append("<td>").append("<small>").append("Post en el que se demoro más tiempo: ").append(orq[2].getPostMayor()).append("</small>").append("</td>")
                 .append("</tr>");
         
         sb.append("<tr>")
-                .append("<td>").append("Post en el que se demoro menos tiempo: " + orq[0].getPostMenor()).append("</td>")
-                .append("<td>").append("Post en el que se demoro menos tiempo: " + orq[1].getPostMenor()).append("</td>")
-                .append("<td>").append("Post en el que se demoro menos tiempo: " + orq[2].getPostMenor()).append("</td>")
+                .append("<td>").append("<small>").append("Post en el que se demoro menos tiempo: \n").append(orq[0].getPostMenor()).append("</small>").append("</td>")
+                .append("<td>").append("<small>").append("Post en el que se demoro menos tiempo:  \n").append(orq[1].getPostMenor()).append("</small>").append("</td>")
+                .append("<td>").append("<small>").append("Post en el que se demoro menos tiempo:  \n").append(orq[2].getPostMenor()).append("</small>").append("</td>")
                 .append("</tr>");
         
                 sb.append("<tr>")
-                .append("<td colspan=\"3\">").append("Orquestador más demorado: " + orqMasDemorado(orq).getTitle()).append("</td>")
+                .append("<td colspan=\"3\">").append("<small>").append("Orquestador más demorado: ").append(orqMasDemorado(orq).getTitle()).append("</small>").append("</td>")
                 .append("</tr>");
                 
         sb.append("</table>");
@@ -136,9 +140,9 @@ public class Tools {
     }
     
     public static Cola<Post> crearPosts(){
-        int num = (int) ( Math.random()*(1 + 5));
+        int num = (int) ( Math.random()*(1 + 6));
         while (num == 0){
-            num = (int) ( Math.random()*(1 + 5));
+            num = (int) ( Math.random()*(1 + 6));
         }
         Cola<Post> colaAux = new Cola<>();
         for (int i = 0; i < num; i++) {            

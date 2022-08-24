@@ -26,13 +26,16 @@ public class Orquestador {
         if (this.getTiempoAtendido() != 0){
             tiempoProm = getPostsAtendidos() / getTiempoAtendido();
         }                  
-        long tiempoAt = tiempoAtendido + Long.parseLong(post.getTiempoP());
-        
-        if(Long.parseLong(post.getTiempoP()) > Long.parseLong(postMayor.getTiempoP())){
+        long tiempoAt = this.tiempoAtendido + Long.parseLong(post.getTiempoP());
+        if(Long.parseLong(post.getTiempoP()) > Long.parseLong(this.postMayor.getTiempoP())){
             setPostMayor(post);
         }
         
-        if(Long.parseLong(post.getTiempoP()) < Long.parseLong(postMenor.getTiempoP())){
+        if(Long.parseLong(getPostMenor().getTiempoP()) == 0){            
+            setPostMenor(getPostMayor());
+        }
+        
+        if(Long.parseLong(post.getTiempoP()) < Long.parseLong(this.postMenor.getTiempoP())){
             setPostMenor(post);
         }
         

@@ -23,12 +23,10 @@ public class OperacionesPost {
         String usuario = "@" + generarTexto(7,1);
         String fecha = generarFecha();        
         String contenido = generarTexto(6,5);
-        String tiempoT = "" + ((int) (Math.random()* (0 + 6)));
+        String tiempoT = "" + ((int) (Math.random()* (1 + 6)));
         while (tiempoT.equals("0")){
-            tiempoT = "" + ((int) (Math.random()* (0 + 6)));
-        }
-        
-        
+            tiempoT = "" + ((int) (Math.random()* (1 + 6)));
+        }      
         return new Post(usuario, fecha, contenido, tiempoT);
     }
     

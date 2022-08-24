@@ -18,12 +18,14 @@ import javafx.scene.control.TextArea;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import modelo.Cola;
+import modelo.Orquestador;
 import modelo.Tools;
 import static modelo.Tools.*;
 import procesos.ActualizarReporte;
 import procesos.ColaTask;
 import procesos.Contador;
 import procesos.OrquestadorTask;
+import procesos.ReporteTask;
 
 /**
  *
@@ -32,6 +34,9 @@ import procesos.OrquestadorTask;
 public class FXMLDocumentController implements Initializable {
     
     Cola<Post> colaP;
+    Orquestador orq1;
+    Orquestador orq2;
+    Orquestador orq3;
     
     @FXML
     private Label label;
@@ -50,14 +55,17 @@ public class FXMLDocumentController implements Initializable {
         @FXML
     private void iniciarProceso(ActionEvent event) {
         
-        invocarCola();
-        invocarOrq();
+        invocarCola(true);
+        invocarOrq(true);
+        invocarReporte(true);
         
     }
     
     @FXML
     private void finalizarProceso(ActionEvent event) {
-
+        invocarCola(false);
+        invocarOrq(false);
+        invocarReporte(false);
     }    
     
     @Override
@@ -70,9 +78,14 @@ public class FXMLDocumentController implements Initializable {
         webEngine2 = wbCola.getEngine();
         webEngine3 = wbReporte.getEngine();
         wbCola.setZoom(0.9);
+        wbReporte.setZoom(0.8);
         
         webEngine1.load("");
         webEngine3.load("");
+        
+        orq1 = generarOrquestador("Orquestador 1");
+        orq2 = generarOrquestador("Orquestador 2");
+        orq3 = generarOrquestador("Orquestador 3");
         
         
         
@@ -85,52 +98,61 @@ public class FXMLDocumentController implements Initializable {
 //        hiloOrquestador.start();
         
     }    
-     public void invocarCola(){
+     public void invocarCola(boolean i){
         ColaTask valor = new ColaTask(colaP);
-        valor.valueProperty().addListener(new ChangeListener<String>(){
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue){
-                webEngine2.loadContent(newValue);
-            }
+        valor.valueProperty().addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
+            webEngine2.loadContent(newValue);
         });
         Thread th = new Thread(valor);
         th.setDaemon(true);
-        th.start();
+        if(i){th.start();}
+        else{th.interrupt();}
         
      }
      
-    public void invocarOrq(){
+     public void invocarReporte(boolean i){
+        Orquestador []orq = new Orquestador[3];
+        orq[0] = orq1;orq[1] = orq2;orq[2] = orq3;
+
+        ReporteTask valor = new ReporteTask(orq);
+        valor.valueProperty().addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
+            webEngine3.loadContent(newValue);
+        });
+        Thread th = new Thread(valor);
+        th.setDaemon(true);
+        if(i){th.start();}
+        else{th.interrupt();}
         
-        OrquestadorTask valor = new OrquestadorTask(colaP, "Orquestador 1");
-        OrquestadorTask valor1 = new OrquestadorTask(colaP, "Orquestador 2");
-        OrquestadorTask valor2 = new OrquestadorTask(colaP, "Orquestador 3");
+     }
+     
+    public void invocarOrq(boolean i){
         
-        valor.valueProperty().addListener(new ChangeListener<String>(){
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue){
-                webEngine1.loadContent(newValue);
-            }
+        OrquestadorTask valor = new OrquestadorTask(colaP, orq1);
+        OrquestadorTask valor1 = new OrquestadorTask(colaP, orq2);
+        OrquestadorTask valor2 = new OrquestadorTask(colaP, orq3);
+        
+        valor.valueProperty().addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
+            webEngine1.loadContent(newValue);
         });
         
-        valor1.valueProperty().addListener(new ChangeListener<String>(){
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue){
-                webEngine4.loadContent(newValue);
-            }
+        valor1.valueProperty().addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
+            webEngine4.loadContent(newValue);
         });
                 
-        valor2.valueProperty().addListener(new ChangeListener<String>(){
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue){
-                webEngine5.loadContent(newValue);
-            }
+        valor2.valueProperty().addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
+            webEngine5.loadContent(newValue);
         });
         
         Thread th = new Thread(valor);
-        Thread th1 = new Thread(valor1);
-        Thread th2 = new Thread(valor2);      
-        th.start();th1.start();th2.start();
-        
-        
+        if(i){th.start();}
+        else{th.interrupt();}
+        Thread th1 = new Thread(valor1);  
+        if(i){th1.start();}
+        else{th1.interrupt();}       
+        Thread th2 = new Thread(valor2);
+        if(i){th2.start();}
+        else{th2.interrupt();}
     }
+    
 }
+        
