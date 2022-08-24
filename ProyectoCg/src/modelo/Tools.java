@@ -6,7 +6,6 @@
 package modelo;
 import datos.Post;
 import static modelo.OperacionesPost.*;
-import static procesos.Contador.formatSeconds;
 import modelo.Orquestador;
 /**
  *
@@ -166,7 +165,7 @@ public class Tools {
         return new Orquestador(state, tiempopOrq, name, postsAtendidos, tiempoAtendido, tiempoPromedio, postMayor, postMenor);
     }
     
-        public static String countOrq(long time) {
+    public static String countOrq(long time) {
         long i = time;
         boolean contando = true;
         String contador = "00:00:00";

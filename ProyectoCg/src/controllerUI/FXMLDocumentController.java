@@ -17,13 +17,13 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
+import javax.swing.JOptionPane;
 import modelo.Cola;
 import modelo.Orquestador;
 import modelo.Tools;
 import static modelo.Tools.*;
-import procesos.ActualizarReporte;
 import procesos.ColaTask;
-import procesos.Contador;
+import procesos.ContadorTask;
 import procesos.OrquestadorTask;
 import procesos.ReporteTask;
 
@@ -37,6 +37,14 @@ public class FXMLDocumentController implements Initializable {
     Orquestador orq1;
     Orquestador orq2;
     Orquestador orq3;
+    Thread thCola;
+    Thread th1;
+    Thread th2;
+    Thread th3;
+    Thread thContador;
+    Thread thReporte;
+    
+    
     
     @FXML
     private Label label;
@@ -49,23 +57,31 @@ public class FXMLDocumentController implements Initializable {
            
     WebEngine webEngine1, webEngine2, webEngine3,  webEngine4,  webEngine5;
 
-    Tools objTools = new Tools();
+
     
     
         @FXML
     private void iniciarProceso(ActionEvent event) {
-        
-        invocarCola(true);
-        invocarOrq(true);
-        invocarReporte(true);
-        
+        invocarContador();
+        invocarCola();
+        invocarOrq();
+        invocarReporte();        
     }
     
     @FXML
     private void finalizarProceso(ActionEvent event) {
-        invocarCola(false);
-        invocarOrq(false);
-        invocarReporte(false);
+        try{
+            thContador.interrupt();
+            thCola.interrupt();
+            th1.interrupt();
+            th2.interrupt();
+            th3.interrupt();
+            thReporte.interrupt();
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "El programa no se ha iniciado");
+        }
+
+
     }    
     
     @Override
@@ -88,29 +104,29 @@ public class FXMLDocumentController implements Initializable {
         orq3 = generarOrquestador("Orquestador 3");
         
         
-        
-        
-    
-
-
-//        hiloReporte.start();
-//        hiloContador.start();
-//        hiloOrquestador.start();
-        
     }    
-     public void invocarCola(boolean i){
+     public void invocarCola(){
         ColaTask valor = new ColaTask(colaP);
         valor.valueProperty().addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
             webEngine2.loadContent(newValue);
         });
-        Thread th = new Thread(valor);
-        th.setDaemon(true);
-        if(i){th.start();}
-        else{th.interrupt();}
+        thCola = new Thread(valor);
+        thCola.setDaemon(true);
+        thCola.start();
         
      }
      
-     public void invocarReporte(boolean i){
+    public void invocarContador(){
+        ContadorTask valor = new ContadorTask();
+        valor.valueProperty().addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
+            contador.setText(newValue);            
+        });
+        thContador = new Thread(valor);
+        thContador.start();
+        
+     }
+     
+     public void invocarReporte(){
         Orquestador []orq = new Orquestador[3];
         orq[0] = orq1;orq[1] = orq2;orq[2] = orq3;
 
@@ -118,14 +134,13 @@ public class FXMLDocumentController implements Initializable {
         valor.valueProperty().addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
             webEngine3.loadContent(newValue);
         });
-        Thread th = new Thread(valor);
-        th.setDaemon(true);
-        if(i){th.start();}
-        else{th.interrupt();}
+        thReporte = new Thread(valor);
+        thReporte.setDaemon(true);
+        thReporte.start();
         
      }
      
-    public void invocarOrq(boolean i){
+    public void invocarOrq(){
         
         OrquestadorTask valor = new OrquestadorTask(colaP, orq1);
         OrquestadorTask valor1 = new OrquestadorTask(colaP, orq2);
@@ -143,15 +158,12 @@ public class FXMLDocumentController implements Initializable {
             webEngine5.loadContent(newValue);
         });
         
-        Thread th = new Thread(valor);
-        if(i){th.start();}
-        else{th.interrupt();}
-        Thread th1 = new Thread(valor1);  
-        if(i){th1.start();}
-        else{th1.interrupt();}       
-        Thread th2 = new Thread(valor2);
-        if(i){th2.start();}
-        else{th2.interrupt();}
+        th1 = new Thread(valor);
+        th1.start();
+        th2 = new Thread(valor1);  
+        th2.start();    
+        th3 = new Thread(valor2);
+        th3.start();
     }
     
 }

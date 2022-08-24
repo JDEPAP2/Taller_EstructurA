@@ -23,8 +23,8 @@ public class Orquestador {
     
     public void reporteOrq ( Post post ){
         long tiempoProm = 0;
-        if (this.getTiempoAtendido() != 0){
-            tiempoProm = getPostsAtendidos() / getTiempoAtendido();
+        if (postsAtendidos != 0){
+            tiempoProm = getTiempoAtendido() / getPostsAtendidos();
         }                  
         long tiempoAt = this.tiempoAtendido + Long.parseLong(post.getTiempoP());
         if(Long.parseLong(post.getTiempoP()) > Long.parseLong(this.postMayor.getTiempoP())){

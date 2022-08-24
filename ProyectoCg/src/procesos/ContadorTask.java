@@ -5,26 +5,32 @@
  */
 package procesos;
 
+import datos.Post;
+import javafx.concurrent.Task;
+import modelo.Cola;
+import static modelo.Tools.colaAHtml;
+import static modelo.Tools.crearPosts;
+
 /**
  *
  * @author jose.escobar
  */
-public class Contador extends Thread{
+public class ContadorTask extends Task<String>{
+    public ContadorTask(){}
     @Override
-    public void run() {
+    protected String call() throws Exception{
+        long i = 0;
         try {
-            long i = 0;
-            while (this.isAlive()) {
-                long count;
-                count = i;
-                System.out.println("contador " + formatSeconds(i));
-                Thread.sleep(1000); 
+            while (!this.isCancelled()) {
+                updateValue(formatSeconds(i));
                 i++;
+                Thread.sleep(1000); 
             }
             
         } catch (InterruptedException e) {
             System.out.println("w");
-        }        
+        }
+        return formatSeconds(i);
     }    
     
     public static String formatSeconds(long timeInSeconds) {
