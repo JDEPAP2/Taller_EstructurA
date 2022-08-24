@@ -10,6 +10,9 @@ import java.util.Calendar;
 /**
 * En esta clase se estan se crean los metodos que permiten realizar un objeto de la clase Post.
 * @author jose.escobar@uao.edu.co Jose David Escobar Código 2210172
+* @author jose.escobar@uao.edu.co Jose David Escobar Código 2210172
+* @author jose.escobar@uao.edu.co Jose David Escobar Código 2210172
+* @author jose.escobar@uao.edu.co Jose David Escobar Código 2210172
 * @date 20 Agosto 2022
 * @version 1.0
 */

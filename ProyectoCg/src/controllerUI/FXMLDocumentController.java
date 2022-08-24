@@ -105,7 +105,7 @@ public class FXMLDocumentController implements Initializable {
         
         
     }    
-     public void invocarCola(){
+    public void invocarCola(){
         ColaTask valor = new ColaTask(colaP);
         valor.valueProperty().addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
             webEngine2.loadContent(newValue);
@@ -126,7 +126,7 @@ public class FXMLDocumentController implements Initializable {
         
      }
      
-     public void invocarReporte(){
+    public void invocarReporte(){
         Orquestador []orq = new Orquestador[3];
         orq[0] = orq1;orq[1] = orq2;orq[2] = orq3;
 
