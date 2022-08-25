@@ -58,7 +58,13 @@ public class FXMLDocumentController implements Initializable {
     
         @FXML
     private void iniciarProceso(ActionEvent event) {
+        wbCola.setVisible(true);
+        wbOrquestador1.setVisible(true);
+        wbOrquestador2.setVisible(true);
+        wbOrquestador3.setVisible(true);
+        wbReporte.setVisible(true);
         label2.setVisible(true);
+        
         invocarContador();
         invocarCola();
         invocarOrq();
@@ -83,10 +89,16 @@ public class FXMLDocumentController implements Initializable {
             }else{
                 JOptionPane.showMessageDialog(null, "No se guardaron los datos");}
             
-            while(!colaP.estaVacia()){colaP.desencolar();}            
+            while(!colaP.estaVacia()){colaP.desencolar();}
+            wbCola.setVisible(false);
             orq1 = generarOrquestador("Orquestador 1");
             orq2 = generarOrquestador("Orquestador 2");
             orq3 = generarOrquestador("Orquestador 3");
+            wbOrquestador1.setVisible(false);
+            wbOrquestador2.setVisible(false);
+            wbOrquestador3.setVisible(false);
+            wbReporte.setVisible(false);
+            
         }catch(Exception e){
             System.out.println(e.toString());
             JOptionPane.showMessageDialog(null, "El programa no se ha iniciado");
