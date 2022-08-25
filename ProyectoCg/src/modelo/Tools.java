@@ -7,9 +7,14 @@ package modelo;
 import datos.Post;
 import static modelo.OperacionesPost.*;
 /**
- *
- * @author PC
- */
+* En esta clase se contienen métodos que generan el cuerpo HTML, posts y orquestadores.
+* @author isabella.duran@uao.edu.co Isabella Duran Nagles Código 2210296
+* @author jose.escobar@uao.edu.co Jose David Escobar Código 2210172
+* @author laura.riascos@uao.edu.co Laura C. Riascos Hernández Código 2211185
+* @author juan_jose.viveros@uao.edu.co Juan J. Viveros Delgado Código 2210208
+* @date 25 Agosto 2022
+* @version 1.0
+*/
 public class Tools {
     
     public static String orquestadoresAHtml(Orquestador orq){
