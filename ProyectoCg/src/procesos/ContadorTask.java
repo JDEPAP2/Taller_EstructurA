@@ -28,7 +28,7 @@ public class ContadorTask extends Task<String>{
             }
             
         } catch (InterruptedException e) {
-            System.out.println("w");
+            System.out.println("");
         }
         return formatSeconds(i);
     }    

@@ -6,7 +6,6 @@
 package modelo;
 import datos.Post;
 import static modelo.OperacionesPost.*;
-import modelo.Orquestador;
 /**
  *
  * @author PC
@@ -59,9 +58,9 @@ public class Tools {
             Post e = colaD.desencolar();
             sb.append("<tr>").append("<td>").append("<div>")
                     .append("<b>").append(e.getUsuario()).append("</b><br>")
-                    .append("<small>").append("Contenido: " + e.getContenido()).append("</small><br>")
-                    .append("<small>").append("Fecha: " + e.getFecha()).append("</small><br>")
-                    .append("<small>").append("Tiempo de Procesamiento: " + e.getTiempoP()).append("</small><br>")
+                    .append("<small>").append("Contenido: ").append(e.getContenido()).append("</small><br>")
+                    .append("<small>").append("Fecha: ").append(e.getFecha()).append("</small><br>")
+                    .append("<small>").append("Tiempo de Procesamiento: ").append(e.getTiempoP()).append(" seg").append("</small><br>")
                     .append("</div>").append("</td>").append("</tr>");
         }
         
@@ -93,15 +92,15 @@ public class Tools {
                 .append("</tr>");
         
         sb.append("<tr>")
-                .append("<td>").append("<small>").append("Tiempo Total: ").append(orq[0].getTiempoAtendido()).append("</small>").append("</td>")
-                .append("<td>").append("<small>").append("Tiempo Total: ").append(orq[1].getTiempoAtendido()).append("</small>").append("</td>")
-                .append("<td>").append("<small>").append("Tiempo Total: ").append(orq[2].getTiempoAtendido()).append("</small>").append("</td>")
+                .append("<td>").append("<small>").append("Tiempo Total: ").append(countOrq(orq[0].getTiempoAtendido())).append("</small>").append("</td>")
+                .append("<td>").append("<small>").append("Tiempo Total: ").append(countOrq(orq[1].getTiempoAtendido())).append("</small>").append("</td>")
+                .append("<td>").append("<small>").append("Tiempo Total: ").append(countOrq(orq[2].getTiempoAtendido())).append("</small>").append("</td>")
                 .append("</tr>");
         
         sb.append("<tr>")
-                .append("<td>").append("<small>").append("Tiempo Promedio: ").append(orq[0].getTiempoPromedio()).append("</small>").append("</td>")
-                .append("<td>").append("<small>").append("Tiempo Promedio: ").append(orq[1].getTiempoPromedio()).append("</small>").append("</td>")
-                .append("<td>").append("<small>").append("Tiempo Promedio: ").append(orq[2].getTiempoPromedio()).append("</small>").append("</td>")
+                .append("<td>").append("<small>").append("Tiempo Promedio: ").append(orq[0].getTiempoPromedio()).append(" seg").append("</small>").append("</td>")
+                .append("<td>").append("<small>").append("Tiempo Promedio: ").append(orq[1].getTiempoPromedio()).append(" seg").append("</small>").append("</td>")
+                .append("<td>").append("<small>").append("Tiempo Promedio: ").append(orq[2].getTiempoPromedio()).append(" seg").append("</small>").append("</td>")
                 .append("</tr>");
         
         sb.append("<tr>")

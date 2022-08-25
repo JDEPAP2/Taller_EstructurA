@@ -16,7 +16,7 @@
       <WebView fx:id="wbReporte" layoutX="34.0" layoutY="536.0" prefHeight="302.0" prefWidth="486.0" />
       <WebView fx:id="wbCola" layoutX="208.0" layoutY="70.0" prefHeight="370.0" prefWidth="312.0" />
       <Separator fx:id="separador2" layoutX="97.0" layoutY="462.0" prefHeight="0.0" prefWidth="360.0" />
-      <Label alignment="CENTER" layoutX="42.0" layoutY="30.0" prefHeight="27.0" prefWidth="479.0" text="Servidor" textFill="#532e68">
+      <Label fx:id="label" alignment="CENTER" layoutX="121.0" layoutY="32.0" prefHeight="38.0" prefWidth="312.0" text="Servidor" textFill="#532e68">
          <font>
             <Font name="System Bold" size="26.0" />
          </font>
@@ -24,9 +24,18 @@
       <Separator layoutX="195.0" layoutY="100.0" orientation="VERTICAL" prefHeight="320.0" prefWidth="7.0" />
       <Button layoutX="137.0" layoutY="474.0" mnemonicParsing="false" onAction="#iniciarProceso" prefHeight="25.0" prefWidth="130.0" style="-fx-background-color: rgb(217, 208, 222);" text="Iniciar Proceso" />
       <Button layoutX="282.0" layoutY="474.0" mnemonicParsing="false" onAction="#finalizarProceso" prefHeight="25.0" prefWidth="130.0" style="-fx-background-color: rgb(217, 208, 222);" text="Finalizar Proceso" />
-      <TextArea fx:id="contador" layoutX="172.0" layoutY="850.0" prefHeight="16.0" prefWidth="209.0" />
       <WebView fx:id="wbOrquestador2" layoutX="36.0" layoutY="197.0" prefHeight="118.0" prefWidth="146.0" />
       <WebView fx:id="wbOrquestador3" layoutX="36.0" layoutY="322.0" prefHeight="118.0" prefWidth="146.0" />
       <Separator fx:id="separador21" layoutX="96.0" layoutY="511.0" prefHeight="0.0" prefWidth="360.0" />
+      <Label fx:id="label1" alignment="CENTER" layoutX="267.0" layoutY="848.0" prefHeight="31.0" prefWidth="84.0" textFill="#7f5597">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="label2" alignment="CENTER" layoutX="36.0" layoutY="848.0" prefHeight="31.0" prefWidth="227.0" text="Tiempo de Procesamiento:" textFill="#7f5597" visible="false">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

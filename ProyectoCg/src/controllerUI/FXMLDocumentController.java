@@ -8,20 +8,18 @@ package controllerUI;
 import datos.Post;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javax.swing.JOptionPane;
 import modelo.Cola;
 import modelo.Orquestador;
-import modelo.Tools;
 import static modelo.Tools.*;
+import static modelo.Utilidad.*;
 import procesos.ColaTask;
 import procesos.ContadorTask;
 import procesos.OrquestadorTask;
@@ -47,13 +45,11 @@ public class FXMLDocumentController implements Initializable {
     
     
     @FXML
-    private Label label;
+    private Label label, label1, label2;
     
     @FXML
     private WebView wbReporte, wbCola, wbOrquestador1, wbOrquestador2, wbOrquestador3;
         
-    @FXML
-    private TextArea contador;
            
     WebEngine webEngine1, webEngine2, webEngine3,  webEngine4,  webEngine5;
 
@@ -62,6 +58,7 @@ public class FXMLDocumentController implements Initializable {
     
         @FXML
     private void iniciarProceso(ActionEvent event) {
+        label2.setVisible(true);
         invocarContador();
         invocarCola();
         invocarOrq();
@@ -77,7 +74,21 @@ public class FXMLDocumentController implements Initializable {
             th2.interrupt();
             th3.interrupt();
             thReporte.interrupt();
+            
+            Orquestador []or = new Orquestador[3];
+            or[0] = orq1;or[1] = orq2;or[2] = orq3;
+            boolean t = crearArchivoXML(or);
+            if(t){
+                JOptionPane.showMessageDialog(null, "Se guardaron los datos de los orquestadores en un archivo xml");
+            }else{
+                JOptionPane.showMessageDialog(null, "No se guardaron los datos");}
+            
+            while(!colaP.estaVacia()){colaP.desencolar();}            
+            orq1 = generarOrquestador("Orquestador 1");
+            orq2 = generarOrquestador("Orquestador 2");
+            orq3 = generarOrquestador("Orquestador 3");
         }catch(Exception e){
+            System.out.println(e.toString());
             JOptionPane.showMessageDialog(null, "El programa no se ha iniciado");
         }
 
@@ -95,9 +106,9 @@ public class FXMLDocumentController implements Initializable {
         webEngine3 = wbReporte.getEngine();
         wbCola.setZoom(0.9);
         wbReporte.setZoom(0.8);
-        
-        webEngine1.load("");
-        webEngine3.load("");
+        wbOrquestador1.setZoom(1.1);
+        wbOrquestador2.setZoom(1.1);
+        wbOrquestador3.setZoom(1.1);
         
         orq1 = generarOrquestador("Orquestador 1");
         orq2 = generarOrquestador("Orquestador 2");
@@ -119,7 +130,7 @@ public class FXMLDocumentController implements Initializable {
     public void invocarContador(){
         ContadorTask valor = new ContadorTask();
         valor.valueProperty().addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
-            contador.setText(newValue);            
+            label1.setText(newValue);            
         });
         thContador = new Thread(valor);
         thContador.start();

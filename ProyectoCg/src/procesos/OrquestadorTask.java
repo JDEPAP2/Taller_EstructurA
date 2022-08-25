@@ -41,17 +41,20 @@ public class OrquestadorTask extends Task<String>{
                     Post elemento = colaP.desencolar();
                     orq.procesarPost(elemento);
                     int tiempo = Integer.parseInt(orq.getTiempopOrq());
+                    updateValue(orquestadoresAHtml(orq));
                     while(tiempo != 0){
                         Thread.sleep(1000);
-                        updateValue(orquestadoresAHtml(orq));
                         tiempo--;
-                        orq.setTiempopOrq(""+ tiempo);                                                                       
+                        orq.setTiempopOrq(""+ tiempo);
+                        updateValue(orquestadoresAHtml(orq));    
                     }
+                    orq.setTiempopOrq(""+ tiempo);
                     orq.reporteOrq(elemento);
                     updateValue(orquestadoresAHtml(orq));
+                    Thread.sleep(1000);
                 }
         }}catch(Exception e){
-            System.out.println(name + "  " + e.toString());
+            System.out.println("");
         }
         return orquestadoresAHtml(orq);
     }
