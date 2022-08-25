@@ -20,7 +20,10 @@ public class Orquestador {
     private long postsAtendidos, tiempoAtendido, tiempoPromedio;
     private Post postMayor, postMenor;
 
-    
+    /**
+    * Crea el método para .
+    * @param event representa la acción del botón "Iniciar Proceso".
+    */
     public void procesarPost ( Post post ){
         setTiempopOrq(post.getTiempoP());
         setState("Ocupado"); 

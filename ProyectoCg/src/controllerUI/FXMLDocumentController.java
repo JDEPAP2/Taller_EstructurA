@@ -59,7 +59,10 @@ public class FXMLDocumentController implements Initializable {
 
 
     
-    
+    /**
+    * Crea el método para iniciar e invocar las colas y muestra los webviews.
+    * @param event representa la acción del botón "Iniciar Proceso".
+    */
         @FXML
     private void iniciarProceso(ActionEvent event) {
         wbCola.setVisible(true);
@@ -75,6 +78,10 @@ public class FXMLDocumentController implements Initializable {
         invocarReporte();        
     }
     
+    /**
+    * Crea el método para interrumpir la ejecución de las colas y muestra ventanas emergentes.
+    * @param event representa la acción del botón "Finalizar Proceso".
+    */
     @FXML
     private void finalizarProceso(ActionEvent event) {
         try{
@@ -132,6 +139,10 @@ public class FXMLDocumentController implements Initializable {
         
         
     }    
+    
+    /**
+    * Crea la tarea de actualizar la cola por medio de un hilo.
+    */
     public void invocarCola(){
         ColaTask valor = new ColaTask(colaP);
         valor.valueProperty().addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
@@ -142,7 +153,10 @@ public class FXMLDocumentController implements Initializable {
         thCola.start();
         
      }
-     
+    
+    /**
+    * Crea la tarea de actualizar el contador de tiempo por medio de un hilo.
+    */
     public void invocarContador(){
         ContadorTask valor = new ContadorTask();
         valor.valueProperty().addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
@@ -152,7 +166,10 @@ public class FXMLDocumentController implements Initializable {
         thContador.start();
         
      }
-     
+    
+    /**
+    * Crea la tarea de actualizar el reporte de cada orquestador por medio de un hilo.
+    */
     public void invocarReporte(){
         Orquestador []orq = new Orquestador[3];
         orq[0] = orq1;orq[1] = orq2;orq[2] = orq3;
@@ -166,7 +183,10 @@ public class FXMLDocumentController implements Initializable {
         thReporte.start();
         
      }
-     
+    
+    /**
+    * Crea la tarea de actualizar los tres orquestadores por medio de un hilo para cada uno.
+    */
     public void invocarOrq(){
         
         OrquestadorTask valor = new OrquestadorTask(colaP, orq1);
