@@ -1,22 +1,29 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package procesos;
 
-import datos.Post;
 import javafx.concurrent.Task;
-import modelo.Cola;
-import static modelo.Tools.colaAHtml;
-import static modelo.Tools.crearPosts;
+
 
 /**
- *
- * @author jose.escobar
- */
+* En esta clase se crea la tarea de actualizar el Contador.
+* @author isabella.duran@uao.edu.co Isabella Duran Nagles Código 2210296
+* @author jose.escobar@uao.edu.co Jose David Escobar Código 2210172
+* @author laura.riascos@uao.edu.co Laura C. Riascos Hernández Código 2211185
+* @author juan_jose.viveros@uao.edu.co Juan J. Viveros Delgado Código 2210208
+* @date 25 Agosto 2022
+* @version 1.0
+*/
 public class ContadorTask extends Task<String>{
+    
+    /**
+    * Constructor vacio
+    */
     public ContadorTask(){}
+    
+    /**
+    * Metodo implementado de la clase Task, este ejecuta la tarea.
+    * @return cadena de texto con el valor del contador.
+    */    
     @Override
     protected String call() throws Exception{
         long i = 0;
@@ -33,6 +40,12 @@ public class ContadorTask extends Task<String>{
         return formatSeconds(i);
     }    
     
+    
+    /**
+    * Este metodo crea el formato de tiempo.
+    * @param timeInSeconds entero con un numero de segundos.
+    * @return cadena con formato de tiempo de un "reloj".
+    */      
     public static String formatSeconds(long timeInSeconds) {
         long hours = timeInSeconds / 3600;
         long secondsLeft = timeInSeconds - hours * 3600;

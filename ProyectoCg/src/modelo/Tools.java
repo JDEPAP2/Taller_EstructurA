@@ -16,7 +16,12 @@ import static modelo.OperacionesPost.*;
 * @version 1.0
 */
 public class Tools {
-    
+
+    /**
+    * Este metodo crea el cuerpo del html que mostrara un orquestador.
+    * @param orq objeto orquestador.
+    * @return cadena de texto con el cuerpo html de orquestador.
+    */  
     public static String orquestadoresAHtml(Orquestador orq){
         
         StringBuilder sb = new StringBuilder("<html>");
@@ -46,7 +51,11 @@ public class Tools {
         return sb.toString(); 
     }
     
-    
+    /**
+    * Este metodo crea el cuerpo del html que mostrara la cola.
+    * @param laCola cola con objetos de la clase Post.
+    * @return cadena de texto con el cuerpo html de la cola.
+    */      
     public static String colaAHtml(Cola<Post> laCola){
         Cola<Post> colaD = OperacionesCola.colaDuplicada(laCola);
         
@@ -75,7 +84,11 @@ public class Tools {
         return sb.toString();    
     }
     
-        
+    /**
+    * Este metodo crea el cuerpo del html que mostrara el reporte.
+    * @param orq[] lista de la clase objeto orquestador.
+    * @return cadena de texto con el cuerpo html del reporte.
+    */          
     public static String convertirReporteAHtml(Orquestador orq[]){
         
         StringBuilder sb = new StringBuilder("<html>");
@@ -131,7 +144,12 @@ public class Tools {
         
         return sb.toString();    
     }
-    
+
+    /**
+    * Este metodo identifica el orquestador que mas tiempo tardo en procesar posts.
+    * @param orq[] lista de la clase objeto orquestador.
+    * @return Objeto orquestador con mayor tiempo atendido.
+    */      
     public static Orquestador orqMasDemorado(Orquestador orq[]){
         if(orq[0].getTiempoAtendido() > orq[1].getTiempoAtendido()){
             return orq[0];
@@ -141,7 +159,11 @@ public class Tools {
             return orq[2];
         }
     }
-    
+
+    /**
+    * Este metodo crear posts al azar.
+    * @return cola con un numero random entre 1 a 6  de objetos de la clase Post.
+    */      
     public static Cola<Post> crearPosts(){
         int num = (int) ( Math.random()*(1 + 6));
         while (num == 0){
@@ -153,7 +175,12 @@ public class Tools {
         }
         return colaAux;
     }
-    
+
+    /**
+    * Este genera un objeto orquestador.
+    * @param name nombre del orquestador.
+    * @return Objeto de la clase Orquestador.
+    */      
     public static Orquestador generarOrquestador(String name){
         
         
@@ -168,7 +195,12 @@ public class Tools {
         
         return new Orquestador(state, tiempopOrq, name, postsAtendidos, tiempoAtendido, tiempoPromedio, postMayor, postMenor);
     }
-    
+
+    /**
+    * Este metodo crear el cuerpo de tiempo.
+    * @param time entero con el numero de segundos que debe durar el contador.
+    * @return cadena de texto con el cuerpo de tiempo del valor ingresado.
+    */      
     public static String countOrq(long time) {
         long i = time;
         boolean contando = true;
@@ -176,7 +208,12 @@ public class Tools {
         contador = formatSeconds(i); 
         return contador;
     }
-    
+
+    /**
+    * Este metodo crea el formato de tiempo.
+    * @param timeInSeconds entero con un numero de segundos.
+    * @return cadena con formato de tiempo de un "reloj".
+    */      
     public static String formatSeconds(long timeInSeconds) {
         long hours = timeInSeconds / 3600;
         long secondsLeft = timeInSeconds - hours * 3600;

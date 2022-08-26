@@ -22,6 +22,12 @@ import org.jdom2.output.XMLOutputter;
 * @version 1.0
 */
 public class Utilidad {
+    
+    /**
+    * Este metodo crea un archivo XML con los datos de los orquestadores.
+    * @param orq[] cadena de objetos de la clase orquestador.
+    * @return booleano que representa  si se creo el archivo o no.
+    */          
     public static boolean crearArchivoXML(Orquestador orq[]){
         boolean t = false;
         

@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Orquestadores>
   <Orquestador Nombre="Orquestador 1">
-    <totalPosts>10</totalPosts>
-    <tiempoTotal>00:00:22</tiempoTotal>
-    <tiempoPromedio>1 seg</tiempoPromedio>
-    <postMasTiempo>Post(usuario:@nefetcd , fecha:2022/7/24 - 10:36:57, contenido:fqnonp yuwilx bypuux ppgwun qmyetd , tiempoP:5)</postMasTiempo>
-    <postMenosTiempo>Post(usuario:@pjbyshm , fecha:2022/7/24 - 10:36:45, contenido:uqgohh spgnel vmslmq wiqktf tbwumn , tiempoP:1)</postMenosTiempo>
+    <totalPosts>24</totalPosts>
+    <tiempoTotal>00:01:38</tiempoTotal>
+    <tiempoPromedio>4 seg</tiempoPromedio>
+    <postMasTiempo>Post(usuario:@liminck , fecha:2022/7/25 - 10:14:11, contenido:wmtbtc lsljqx pbvsxl uugogd liuqvy , tiempoP:6)</postMasTiempo>
+    <postMenosTiempo>Post(usuario:@kuyagev , fecha:2022/7/25 - 10:14:5, contenido:yfwogt jsgbsn ufnugy bfiklq mumjva , tiempoP:1)</postMenosTiempo>
   </Orquestador>
   <Orquestador Nombre="Orquestador 2">
-    <totalPosts>7</totalPosts>
-    <tiempoTotal>00:00:29</tiempoTotal>
+    <totalPosts>23</totalPosts>
+    <tiempoTotal>00:01:37</tiempoTotal>
     <tiempoPromedio>4 seg</tiempoPromedio>
-    <postMasTiempo>Post(usuario:@ajfdixt , fecha:2022/7/24 - 10:36:45, contenido:lbnsqc kknhlh jfbjbi ebfmjn wbpfvn , tiempoP:6)</postMasTiempo>
-    <postMenosTiempo>Post(usuario:@ticcmqs , fecha:2022/7/24 - 10:37:3, contenido:quyeec csueeq uosvkf tnxbvj uapika , tiempoP:1)</postMenosTiempo>
+    <postMasTiempo>Post(usuario:@keeiota , fecha:2022/7/25 - 10:13:56, contenido:uwdkww pvxbtl ynkjba bywovy kwejvv , tiempoP:6)</postMasTiempo>
+    <postMenosTiempo>Post(usuario:@jcsnpfs , fecha:2022/7/25 - 10:14:23, contenido:hwdoie escuty feilqn ytyhjl lxuygh , tiempoP:1)</postMenosTiempo>
   </Orquestador>
   <Orquestador Nombre="Orquestador 3">
-    <totalPosts>7</totalPosts>
-    <tiempoTotal>00:00:25</tiempoTotal>
-    <tiempoPromedio>3 seg</tiempoPromedio>
-    <postMasTiempo>Post(usuario:@lldsnyy , fecha:2022/7/24 - 10:36:48, contenido:ftcmyl ddofov vgojwl hgnbme tvwdbd , tiempoP:6)</postMasTiempo>
-    <postMenosTiempo>Post(usuario:@cibkpbc , fecha:2022/7/24 - 10:36:54, contenido:agmutv fhkphu bheoxm lwkliw fjnbtf , tiempoP:1)</postMenosTiempo>
+    <totalPosts>30</totalPosts>
+    <tiempoTotal>00:01:30</tiempoTotal>
+    <tiempoPromedio>2 seg</tiempoPromedio>
+    <postMasTiempo>Post(usuario:@mhbvxxn , fecha:2022/7/25 - 10:14:29, contenido:vadmnc dbqvbs omgyhd nhhocb kacxmh , tiempoP:6)</postMasTiempo>
+    <postMenosTiempo>Post(usuario:@wodbvps , fecha:2022/7/25 - 10:13:41, contenido:muxlan jauquq wqxhty onjeqp xyjhcl , tiempoP:1)</postMenosTiempo>
   </Orquestador>
-  <OrquestadorMasDemorado>Orquestador 2</OrquestadorMasDemorado>
+  <OrquestadorMasDemorado>Orquestador 1</OrquestadorMasDemorado>
 </Orquestadores>
